@@ -45,8 +45,8 @@
         // Set map boundaries
         map.setMaxBounds([[50,-30],[-45,100]]);
         
-        L.marker([17.64402, 13.84277]).addTo(map)
-            .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+        /*L.marker([17.64402, 13.84277]).addTo(map)
+            .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();*/
         
         var popup = L.popup();
 
@@ -56,6 +56,51 @@
                 .setContent("You clicked the map at " + e.latlng.toString())
                 .openOn(map);
         }
+        
+        /*var circle = L.circle([5,20], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 500
+        }).addTo(map);*/
+        
+        L.circle([7.26984, 10.64575], 100000).addTo(map);
+        L.circle([7.1663, 12.76611], 100000).addTo(map);
+        L.circle([9.47615, 13.32092], 100000).addTo(map);
+        L.circle([9.47615, 13.32092], 50000).addTo(map);
+        L.circle([9.47615, 13.32092], 150000).addTo(map);
+        L.circle([10.196, 16.70471], 100000).addTo(map);
+        L.circle([9.63325, 10.51392], 100000).addTo(map);
+        L.circle([9.28646, 17.39685], 100000).addTo(map);
+        L.circle([9.28646, 17.39685], 50000).addTo(map);
+        L.circle([20.10752, 14.80408], 100000).addTo(map);
+        L.circle([20.10752, 14.80408], 50000).addTo(map);
+        L.circle([29.33909, 10.71716], 100000).addTo(map);
+        L.circle([29.33909, 10.71716], 50000).addTo(map);
+        L.circle([24.46215, 5.38879], 100000).addTo(map);
+        L.circle([24.59209, 11.82129], 100000).addTo(map);
+        L.circle([24.59209, 11.82129], 50000).addTo(map);
+        L.circle([26.62291, 14.55139], 100000).addTo(map);
+        L.circle([26.62291, 14.55139], 50000).addTo(map);
+        L.circle([26.62291, 14.55139], 150000).addTo(map);
+        L.circle([5.97122, 8.15735], 100000).addTo(map);
+        L.circle([-0.67015, 22.71423], 100000).addTo(map);
+        L.circle([-0.67015, 22.71423], 50000).addTo(map);
+        L.circle([10.31492, 14.9469], 100000).addTo(map);
+        L.circle([8.31478, 16.88599], 100000).addTo(map);
+        L.circle([8.31478, 16.88599], 50000).addTo(map);
+        L.circle([8.86879, 8.41553], 100000).addTo(map);
+        L.circle([3.95742, 19.06677], 100000).addTo(map);
+        L.circle([5.81822, 20.91248], 100000).addTo(map);
+        L.circle([9.69281, 17.06726], 100000).addTo(map);
+        L.circle([14.47192, 13.27698], 100000).addTo(map);
+        L.circle([13.31479, 13.15063], 100000).addTo(map);
+        L.circle([34.88142, 18.85803], 100000).addTo(map);
+        L.circle([9.0804, 19.1272], 100000).addTo(map);
+        L.circle([-2.27906, 7.6355], 100000).addTo(map);
+        L.circle([-10.76856, 6.06995], 100000).addTo(map);
+        L.circle([7.05728, 24.3512], 100000).addTo(map);
+        L.circle([8.79823, 15.80383], 100000).addTo(map);
 
         map.on('click', onMapClick);
     </script>
