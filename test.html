@@ -20,10 +20,16 @@
     </style>
     <script src = "./test.js"></script>
 </head>
+    
+
 <body>
+    
+    <!-- Map container -->
     <div id="map"></div>
     
+    <!-- Info panel container -->
     <div id="info">
+        <!-- Cosas que copie del tio que hizo el tutorial-->
         <div ref="container" class="info-container">
           <div ref="title" class="info-title">
             <h1 id="header-t">Nothing Selected</h1>
@@ -46,12 +52,14 @@
         </div>
     </div>
 
+    <!-- Link to the leaflet library -->
     <script
         src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js">
     </script>
-
+    
+    <!-- Script with all related map stuff -->
     <script>
-        // Map script
+        // Global variables
         var fileData = null;
         var data = [];
         var colors = {Lannister: "#cdd10a", Stark: "#9ddce8", Greyjoy: "#999d9e", Bolton: "#ce4021",
@@ -59,14 +67,21 @@
              Free: "#c6cec7", Brave: "#84800b", Bracken: "#560505", Karstark: "#10a887",
              Tully: "#fcbfc8", Mallister: "#7c64a8", Night: "#000000", Tyrell: "#ffb7ef",
              Blackwood: "#ff9b9b"};
-
         var map = null;
         
+        
+        /** On click action that shows battle information on the information panel
+         * battle: battle object containing all information
+        */
         function showInfo(battle) {
             document.getElementById("header-t").innerHTML = battle["name"];
             document.getElementsByClassName("info-content").innerHTML = "<p>" + battle["note"] + "</p>";
         }
         
+        
+        /** Reads a csv file and stores the complete file on the global variable fileData 
+         * file: string containing the relative path to the local file
+        */
         function readTextFile(file) {
             var rawFile = new XMLHttpRequest();
             rawFile.open("GET", file, false);
@@ -81,6 +96,10 @@
             rawFile.send(null);
         }
 
+        
+        /** File that stores all battle info in the global variable data from a text
+         * text: string variable containing battle information
+        */
         function getBattles(text) {
             var lines = text.split('\n');
             for (var i = 1; i < (lines.length - 1); i++) {
@@ -118,6 +137,8 @@
             }
         }
         
+        
+        /** Function that paints all the battle data in the map */
         function paintBattles() {
             for (var i = 0; i < data.length - 1; i++) {
                 console.log(data[i]);
@@ -162,6 +183,8 @@
             }
         }
         
+        
+        /** Initializes the map data and calls the functions to paint the data in the map */
         function create() {
             map = L.map('map').setView([5,20], 4);
             mapLink = 
@@ -191,6 +214,8 @@
             paintBattles();
         }
         
+        
+        // Start painting the map
         create();
     </script>
 </body>
