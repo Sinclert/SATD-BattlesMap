@@ -1,6 +1,3 @@
-//import L from 'leaflet'
-//Global variables
-
 var fileData = null;
 var data = [];
 var colors = {Lannister: "#cdd10a", Stark: "#9ddce8", Greyjoy: "#999d9e", Bolton: "#ce4021",
@@ -11,33 +8,9 @@ var colors = {Lannister: "#cdd10a", Stark: "#9ddce8", Greyjoy: "#999d9e", Bolton
 
 var map = null;
 
-function create() {
-    map = L.map('map').setView([5,20], 4);
-    mapLink = 
-            '<a href="http://openstreetmap.org">OpenStreetMap</a>';
-    L.tileLayer(
-        'https://cartocdn-ashbu.global.ssl.fastly.net/ramirocartodb/api/v1/map/named/tpl_756aec63_3adb_48b6_9d14_331c6cbc47cf/all/{z}/{x}/{y}.png', {
-        attribution: '&copy; ' + mapLink + ' Contributors',
-        center: [ 5, 20 ],
-        zoom: 4,
-        maxZoom: 8,
-        minZoom: 4,
-        maxBounds: [ [ 50, -30 ], [ -45, 100 ] ]
-        }).addTo(map);
-        
-    // Change the position of the zoom control
-    map.zoomControl.setPosition('bottomright');
-    // Set map boundaries
-    map.setMaxBounds([[50,-30],[-45,100]]);
-    
-    // Get file data
-    readTextFile("./5kings_battles_v1.csv");
-    
-    // Set objects data
-    getBattles(fileData);
-    
-    // Show battles data on the map
-    paintBattles();
+function showInfo(battle) {
+    document.getElementById("header-t").innerHTML = battle["name"];
+    document.getElementsByClassName("info-content").innerHTML = "<p>" + battle["note"] + "</p>";
 }
 
 function readTextFile(file) {
@@ -90,12 +63,9 @@ function getBattles(text) {
         data.push(aux);
     }
 }
-
+        
 function paintBattles() {
-    console.log("in paint battles");
-    
     for (var i = 0; i < data.length - 1; i++) {
-    //data.forEach(function (key) {
         console.log(data[i]);
         // Radius for circle asignation, multiplied by 10 so that it can be seen
         var radius = data[i].attacker_size * 10;
@@ -109,28 +79,57 @@ function paintBattles() {
                 color = colors[aux[0]];
             }
         }
-        
-        // Attacker circle
-        L.circle([data[i].lat, data[i].lng], radius, {
-                 fillColor: color,
-                 color: color,
-                 fillOpacity: 0.3
-                 }).addTo(map);
-        
-        if (data[i].defender_1 in colors) {
-            color = colors[data[i].defender_1];
+        if (data[i].lat === "" || data[i].lon === "") {
+            continue;
         } else {
-            var aux2 = data[i].defender_1.split(' ');
-            if (aux2[0] in colors) {
-                color = colors[aux2[0]];
+            // Attacker circle
+            L.circle([data[i].lat, data[i].lng], radius, {
+                fillColor: color,
+                color: color,
+                fillOpacity: 0.1
+            }).addTo(map).on("click", showInfo(data[i]));
+            if (data[i].defender_1 in colors) {
+                color = colors[data[i].defender_1];
+            } else {
+                var aux2 = data[i].defender_1.split(' ');
+                if (aux2[0] in colors) {
+                    color = colors[aux2[0]];
+                }
             }
+
+            //Defender circle
+            L.circle([data[i].lat, data[i].lng], radius, {
+                fillColor: color,
+                color: color,
+                fillOpacity: 0.1
+            }).addTo(map).on("click", showInfo(data[i]));
         }
-        
-        //Defender circle
-        L.circle([data[i].lat, data[i].lng], radius, {
-                 fillColor: color,
-                 fillOpacity: 0.5
-                 }).addTo(map);
-    //});
     }
+}
+        
+ function create() {
+     map = L.map('map').setView([5,20], 4);
+     mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+     L.tileLayer('https://cartocdn-ashbu.global.ssl.fastly.net/ramirocartodb/api/v1/map/named/tpl_756aec63_3adb_48b6_9d14_331c6cbc47cf/all/{z}/{x}/{y}.png', {
+        attribution: '&copy; ' + mapLink + ' Contributors',
+        center: [ 5, 20 ],
+        zoom: 4,
+        maxZoom: 8,
+        minZoom: 4,
+        maxBounds: [ [ 50, -30 ], [ -45, 100 ] ]
+     }).addTo(map);
+
+     // Change the position of the zoom control
+     map.zoomControl.setPosition('bottomright');
+     // Set map boundaries
+     map.setMaxBounds([[50,-30],[-45,100]]);
+
+     // Get file data
+     readTextFile("./5kings_battles_v1.csv");
+
+     // Set objects data
+     getBattles(fileData);
+
+     // Show battles data on the map
+     paintBattles();
 }

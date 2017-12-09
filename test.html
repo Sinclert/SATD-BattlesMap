@@ -7,6 +7,7 @@
         rel="stylesheet" 
         href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"
     />
+    <link rel = "stylesheet" type = "text/css" href = "./test.css">
     <style>
         body {
             padding: 0;
@@ -21,16 +22,36 @@
 </head>
 <body>
     <div id="map"></div>
+    
+    <div id="info">
+        <div ref="container" class="info-container">
+          <div ref="title" class="info-title">
+            <h1 id="header-t">Nothing Selected</h1>
+          </div>
+          <div class="info-body">
+            <div class="info-content-container">
+              <div ref="content" class="info-content"></div>
+            </div>
+            <div class="info-footer">
+              <div class="blog-link">
+                <p>Representation of the battles taken place in the A Song of Ice and Fire universe. <a href="https://blog.patricktriest.com/game-of-thrones-map-node-postgres-redis/" target="_blank" ref="noopener"> Based on this tutorial.</a></p>
+              </div>
+              <p>
+                <a href="https://github.com/Sinclert/SATD-BattlesMap" target="_blank" rel="noopener">Source Code</a> |
+                <a href="https://github.com/triestpa/Atlas-Of-Thrones/blob/master/attribution.md" target="_blank" rel="noopener">Attribution</a> |
+                <a href="https://github.com/triestpa/Atlas-Of-Thrones/blob/master/LICENSE" target="_blank" rel="noopener">License
+              </p>
+            </div>
+          </div>
+        </div>
+    </div>
 
     <script
         src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js">
     </script>
-    
-    <script> readTextFile("./5kings_battles_v1.csv")</script>
-    <script> getBattles(fileData)</script>
 
     <script>
-        
+        // Map script
         var fileData = null;
         var data = [];
         var colors = {Lannister: "#cdd10a", Stark: "#9ddce8", Greyjoy: "#999d9e", Bolton: "#ce4021",
@@ -40,6 +61,11 @@
              Blackwood: "#ff9b9b"};
 
         var map = null;
+        
+        function showInfo(battle) {
+            document.getElementById("header-t").innerHTML = battle["name"];
+            document.getElementsByClassName("info-content").innerHTML = "<p>" + battle["note"] + "</p>";
+        }
         
         function readTextFile(file) {
             var rawFile = new XMLHttpRequest();
@@ -93,8 +119,6 @@
         }
         
         function paintBattles() {
-            console.log("in paint battles");
-
             for (var i = 0; i < data.length - 1; i++) {
                 console.log(data[i]);
                 // Radius for circle asignation, multiplied by 10 so that it can be seen
@@ -109,28 +133,32 @@
                         color = colors[aux[0]];
                     }
                 }
-
-                // Attacker circle
-                L.circle([data[i].lat, data[i].lng], radius, {
-                         fillColor: color,
-                         color: color,
-                         fillOpacity: 0.3
-                         }).addTo(map);
-
-                if (data[i].defender_1 in colors) {
-                    color = colors[data[i].defender_1];
+                if (data[i].lat === "" || data[i].lon === "") {
+                    continue;
                 } else {
-                    var aux2 = data[i].defender_1.split(' ');
-                    if (aux2[0] in colors) {
-                        color = colors[aux2[0]];
-                    }
-                }
+                    // Attacker circle
+                    L.circle([data[i].lat, data[i].lng], radius, {
+                             fillColor: color,
+                             color: color,
+                             fillOpacity: 0.1
+                             }).addTo(map).on("click", showInfo(data[i]));
 
-                //Defender circle
-                L.circle([data[i].lat, data[i].lng], radius, {
-                         fillColor: color,
-                         fillOpacity: 0.5
-                         }).addTo(map);
+                    if (data[i].defender_1 in colors) {
+                        color = colors[data[i].defender_1];
+                    } else {
+                        var aux2 = data[i].defender_1.split(' ');
+                        if (aux2[0] in colors) {
+                            color = colors[aux2[0]];
+                        }
+                    }
+
+                    //Defender circle
+                    L.circle([data[i].lat, data[i].lng], radius, {
+                             fillColor: color,
+                             color: color,
+                             fillOpacity: 0.1
+                             }).addTo(map).on("click", showInfo(data[i]));
+                }
             }
         }
         
@@ -164,96 +192,6 @@
         }
         
         create();
-
-        /*var map = L.map('map').setView([5,20], 4);
-        mapLink = 
-            '<a href="http://openstreetmap.org">OpenStreetMap</a>';
-        L.tileLayer(
-            'https://cartocdn-ashbu.global.ssl.fastly.net/ramirocartodb/api/v1/map/named/tpl_756aec63_3adb_48b6_9d14_331c6cbc47cf/all/{z}/{x}/{y}.png', {
-            attribution: '&copy; ' + mapLink + ' Contributors',
-            center: [ 5, 20 ],
-            zoom: 4,
-            maxZoom: 8,
-            minZoom: 4,
-            maxBounds: [ [ 50, -30 ], [ -45, 100 ] ]
-            //crs: L.CRS.EPSG4326
-        }).addTo(map);
-        
-        // Change the position of the zoom control
-        map.zoomControl.setPosition('bottomright');
-        // Set map boundaries
-        map.setMaxBounds([[50,-30],[-45,100]]);*/
-        
-        /*L.marker([17.64402, 13.84277]).addTo(map)
-            .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();*/
-        
-        /*var popup = L.popup();
-
-        function onMapClick(e) {
-            popup
-                .setLatLng(e.latlng)
-                .setContent("You clicked the map at " + e.latlng.toString())
-                .openOn(map);
-        }*/
-        
-        /*var circle = L.circle([5,20], {
-            color: 'red',
-            fillColor: '#f03',
-            fillOpacity: 0.5,
-            radius: 500
-        }).addTo(map);*/
-        
-        /*L.circle([7.26984, 10.64575], 100000).addTo(map);
-        L.circle([7.1663, 12.76611], 100000).addTo(map);
-        L.circle([9.47615, 13.32092], 100000).addTo(map);
-        L.circle([9.47615, 13.32092], 50000).addTo(map);
-        L.circle([9.47615, 13.32092], 150000).addTo(map);
-        L.circle([10.196, 16.70471], 100000).addTo(map);
-        L.circle([9.63325, 10.51392], 100000).addTo(map);
-        L.circle([9.28646, 17.39685], 100000).addTo(map);
-        L.circle([9.28646, 17.39685], 50000).addTo(map);
-        L.circle([20.10752, 14.80408], 100000).addTo(map);
-        L.circle([20.10752, 14.80408], 50000).addTo(map);
-        L.circle([29.33909, 10.71716], 100000).addTo(map);
-        L.circle([29.33909, 10.71716], 50000).addTo(map);
-        L.circle([24.46215, 5.38879], 100000).addTo(map);
-        L.circle([24.59209, 11.82129], 100000).addTo(map);
-        L.circle([24.59209, 11.82129], 50000).addTo(map);
-        L.circle([26.62291, 14.55139], 100000).addTo(map);
-        L.circle([26.62291, 14.55139], 50000).addTo(map);
-        L.circle([26.62291, 14.55139], 150000).addTo(map);
-        L.circle([5.97122, 8.15735], 100000).addTo(map);
-        L.circle([-0.67015, 22.71423], 100000).addTo(map);
-        L.circle([-0.67015, 22.71423], 50000).addTo(map);
-        L.circle([10.31492, 14.9469], 100000).addTo(map);
-        L.circle([8.31478, 16.88599], 100000).addTo(map);
-        L.circle([8.31478, 16.88599], 50000).addTo(map);
-        L.circle([8.86879, 8.41553], 100000).addTo(map);
-        L.circle([3.95742, 19.06677], 100000).addTo(map);
-        L.circle([5.81822, 20.91248], 100000).addTo(map);
-        L.circle([9.69281, 17.06726], 100000).addTo(map);
-        L.circle([14.47192, 13.27698], 100000).addTo(map);
-        L.circle([13.31479, 13.15063], 100000).addTo(map);
-        L.circle([34.88142, 18.85803], 100000).addTo(map);
-        L.circle([9.0804, 19.1272], 100000).addTo(map);
-        L.circle([-2.27906, 7.6355], 100000).addTo(map);
-        L.circle([-10.76856, 6.06995], 100000).addTo(map);
-        L.circle([7.05728, 24.3512], 100000).addTo(map);
-        L.circle([8.79823, 15.80383], 100000).addTo(map);*/
-        
-        /*L.circle([8.79823, 15.80383], 100000, {
-                 fillColor: "#cdd10a",
-                 color: "#cdd10a",
-                 fillOpacity: 0.3
-                 }).addTo(map);*/
-        
-        //map.on('click', onMapClick);
     </script>
-    
-    <!--<script src = "./test.js"> 
-        readTextFile("./5kings_battles_v1.csv");
-        getBattles(fileData);
-        paintBattles();
-    </script>-->
 </body>
 </html>
