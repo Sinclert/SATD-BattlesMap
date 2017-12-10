@@ -74,6 +74,7 @@
          * battle: battle object containing all information
         */
         function showInfo(battle) {
+            console.log("clicked on circle");
             document.getElementById("header-t").innerHTML = battle["name"];
             document.getElementsByClassName("info-content").innerHTML = "<p>" + battle["note"] + "</p>";
         }

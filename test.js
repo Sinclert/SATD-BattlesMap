@@ -96,7 +96,8 @@ function paintBattles() {
                     color = colors[aux2[0]];
                 }
             }
-
+            
+            radius = data[i].defender_size * 10;
             //Defender circle
             L.circle([data[i].lat, data[i].lng], radius, {
                 fillColor: color,
