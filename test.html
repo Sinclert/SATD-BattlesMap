@@ -28,7 +28,7 @@
     <div id="map"></div>
     
     <!-- Info panel container -->
-    <div id="info">
+    <div id="info-panel-placeholder">
         <!-- Cosas que copie del tio que hizo el tutorial-->
         <div ref="container" class="info-container">
           <div ref="title" class="info-title">
@@ -36,7 +36,7 @@
           </div>
           <div class="info-body">
             <div class="info-content-container">
-              <div ref="content" class="info-content"></div>
+              <div ref="content" class="info-content"><p> There will be a paragraph here</p></div>
             </div>
             <div class="info-footer">
               <div class="blog-link">
@@ -73,10 +73,16 @@
         /** On click action that shows battle information on the information panel
          * battle: battle object containing all information
         */
-        function showInfo(battle) {
+        /*function showInfo(battle) {
             console.log("clicked on circle");
             document.getElementById("header-t").innerHTML = battle["name"];
             document.getElementsByClassName("info-content").innerHTML = "<p>" + battle["note"] + "</p>";
+        }*/
+        
+        
+        /** Function that shows the info panel on-click */
+        function show() {
+            document.getElementsByClassName("info-container").classList.toggle('info-active');
         }
         
         
@@ -142,7 +148,6 @@
         /** Function that paints all the battle data in the map */
         function paintBattles() {
             for (var i = 0; i < data.length - 1; i++) {
-                console.log(data[i]);
                 // Radius for circle asignation, multiplied by 10 so that it can be seen
                 var radius = data[i].attacker_size * 10;
                 // Color assignation by house
@@ -163,7 +168,7 @@
                              fillColor: color,
                              color: color,
                              fillOpacity: 0.1
-                             }).addTo(map).on("click", showInfo(data[i]));
+                             }).addTo(map);//.on("click", showInfo(data[i]));
 
                     if (data[i].defender_1 in colors) {
                         color = colors[data[i].defender_1];
@@ -180,7 +185,7 @@
                              fillColor: color,
                              color: color,
                              fillOpacity: 0.1
-                             }).addTo(map).on("click", showInfo(data[i]));
+                             }).addTo(map);//.on("click", showInfo(data[i]));
                 }
             }
         }
@@ -214,6 +219,9 @@
 
             // Show battles data on the map
             paintBattles();
+            
+            // Add event listener to the info panel
+            document.getElementsByClassName("info-title").addEventListener('click', show(), false);
         }
         
         

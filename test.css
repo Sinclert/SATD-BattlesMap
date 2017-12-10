@@ -8,7 +8,7 @@ body {
 }
 
 a {
-  color: $highlight;
+  color: #BABA45;
 }
 
 
@@ -20,13 +20,14 @@ a {
   align-items: center;
   cursor: pointer;
   user-select: none;
-  color: #faebd7;;
+  color: #faebd7;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
     
   h1 {
+    font-family: 'MedievalSharp', cursive;
     letter-spacing: 0.3rem;
     max-width: 100%;
     padding: 20px;
@@ -56,7 +57,7 @@ a {
   height: 60vh;
   color: #faebd7;
   transition: all 0.4s ease-in-out;
-  transform: translateY(calc(100% - 80px;));
+  transform: translateY(calc(100% - 80px));
 }
 
 .info-container.info-active {
@@ -64,7 +65,7 @@ a {
 }
 
 .info-body {
-  margin-top: $footerHeight;
+  margin-top: 80px;
   overflow-y: scroll;
   overflow-x: hidden;
   position: relative;
