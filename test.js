@@ -40,8 +40,7 @@ var map = null;
 
 /** Function that shows the info panel on-click */
 function show() {
-	var iiii = document.getElementsByClassName("info-container");
-	iiii[0].classList.toggle('info-active');
+	document.getElementById("info-container").classList.toggle('info-active');
 }
 
 
@@ -51,8 +50,10 @@ function show() {
  * file: string containing the relative path to the local file
 */
 function readTextFile(file) {
+
 	var rawFile = new XMLHttpRequest();
 	rawFile.open("GET", file, false);
+
 	rawFile.onreadystatechange = function () {
 		if (rawFile.readyState === 4) {
 			if (rawFile.status === 200 || rawFile.status === 0) {
@@ -112,9 +113,12 @@ function getBattles(text) {
 
 /** Function that paints all the battle data in the map */
 function paintBattles() {
+
 	for (var i = 0; i < data.length - 1; i++) {
+
 		// Radius for circle asignation, multiplied by 10 so that it can be seen
 		var radius = data[i].attacker_size * 10;
+
 		// Color assignation by house
 		var color = null;
 		if (data[i].attacker_1 in colors) {
@@ -166,6 +170,7 @@ function paintBattles() {
 			}
 			
 			radius = data[i].defender_size * 10;
+			
 			//Defender circle
 			L.circle([data[i].lat, data[i].lng], radius, {
 					 fillColor: color,
@@ -184,18 +189,18 @@ function create() {
 	map = L.map('map').setView([5,20], 4);
 	mapLink = 
 			'<a href="http://openstreetmap.org">OpenStreetMap</a>';
-	L.tileLayer(
-		'https://cartocdn-ashbu.global.ssl.fastly.net/ramirocartodb/api/v1/map/named/tpl_756aec63_3adb_48b6_9d14_331c6cbc47cf/all/{z}/{x}/{y}.png', {
+	L.tileLayer('https://cartocdn-ashbu.global.ssl.fastly.net/ramirocartodb/api/v1/map/named/tpl_756aec63_3adb_48b6_9d14_331c6cbc47cf/all/{z}/{x}/{y}.png', {
 		attribution: '&copy; ' + mapLink + ' Contributors',
 		center: [ 5, 20 ],
 		zoom: 4,
 		maxZoom: 8,
 		minZoom: 4,
 		maxBounds: [ [ 50, -30 ], [ -45, 100 ] ]
-		}).addTo(map);
+	}).addTo(map);
 
 	// Change the position of the zoom control
 	map.zoomControl.setPosition('bottomright');
+
 	// Set map boundaries
 	map.setMaxBounds([[50,-30],[-45,100]]);
 
@@ -209,8 +214,7 @@ function create() {
 	paintBattles();
 	
 	// Add event listener to the info panel
-	var uuuu = document.getElementsByClassName("info-title");
-	uuuu[0].addEventListener('click', show, false);
+	document.getElementById("info-title").addEventListener('click', show, false);
 }
 
 
