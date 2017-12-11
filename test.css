@@ -1,94 +1,99 @@
 body {
-  margin: 0;
-  font-family: 'Lato', sans-serif;
-  background: #333;
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
+	padding: 0;
+	margin: 0;
+	font-family: 'Lato', sans-serif;
+	background: #333;
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
 }
 
 a {
-  color: #BABA45;
+	color: #BABA45;
 }
 
+html, body, #map {
+	height: 100%;
+	width: 100%;
+}
 
 .info-title {
-  font-family: 'MedievalSharp', cursive;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-  color: #faebd7;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-    
-  h1 {
-    font-family: 'MedievalSharp', cursive;
-    letter-spacing: 0.3rem;
-    max-width: 100%;
-    padding: 20px;
-    text-overflow: ellipsis;
-    text-align: center;
-  }
+	font-family: 'MedievalSharp', cursive;
+	height: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	user-select: none;
+	color: #faebd7;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	
+	h1 {
+		font-family: 'MedievalSharp', cursive;
+		letter-spacing: 0.3rem;
+		max-width: 100%;
+		padding: 20px;
+		text-overflow: ellipsis;
+		text-align: center;
+	}
 }
 
 .info-content {
-  padding: 0 8% 24px 8%;
-  margin: 0 auto;
-  background: #333;
-  overflow-y: scroll;
-  font-size: 1rem;
-  line-height: 1.25em;
-  font-weight: 300;
+	padding: 0 8% 24px 8%;
+	margin: 0 auto;
+	background: #333;
+	overflow-y: scroll;
+	font-size: 1rem;
+	line-height: 1.25em;
+	font-weight: 300;
 }
 
 .info-container {
-  position: absolute;
-  overflow-y: hidden;
-  bottom: 0;
-  left: 24px;
-  z-index: 1000;
-  background: #222;
-  width: 500px;
-  height: 60vh;
-  color: #faebd7;
-  transition: all 0.4s ease-in-out;
-  transform: translateY(calc(100% - 80px));
+	position: absolute;
+	overflow-y: hidden;
+	bottom: 0;
+	left: 24px;
+	z-index: 1000;
+	background: #222;
+	width: 500px;
+	height: 60vh;
+	color: #faebd7;
+	transition: all 0.4s ease-in-out;
+	transform: translateY(calc(100% - 80px));
 }
 
 .info-container.info-active {
-  transform: translateY(0);
+	transform: translateY(0);
 }
 
 .info-body {
-  margin-top: 80px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  position: relative;
-  height: 80%;
+	margin-top: 80px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	position: relative;
+	height: 80%;
 }
 
 .info-footer {
-  font-size: 0.8rem;
-  font-family: 'Lato', sans-serif;
-  padding: 8%;
-  text-align: center;
-  text-transform: uppercase;
+	font-size: 0.8rem;
+	font-family: 'Lato', sans-serif;
+	padding: 8%;
+	text-align: center;
+	text-transform: uppercase;
 }
 
 .blog-link {
-  letter-spacing: 0.1rem;
-  font-weight: bold;
+	letter-spacing: 0.1rem;
+	font-weight: bold;
 }
 
 @media (max-width: 600px) {
-  .info-container  {
-    left: 0;
-    width: 100%;
-    height: 80vh;
-  }
+	.info-container  {
+		left: 0;
+		width: 100%;
+		height: 80vh;
+	}
 }
