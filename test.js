@@ -89,6 +89,28 @@ function clearMap() {
 }
 
 
+function lul() {
+
+	var regions = Array.from(document.getElementsByClassName("region-selector"));
+	var regions2 = [];
+
+	regions.forEach(function(element) {
+		if (element.checked == true) {
+			regions2.push(element.value);
+		}
+	});
+
+	clearMap();
+
+	var filteredArray = data.filter(function(object) {
+		return regions2.includes(object['region']);
+	})
+
+	paintBattles(filteredArray);
+}
+
+
+
 function lol() {
 
 	var year = document.getElementById("slider").value;
