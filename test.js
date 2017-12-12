@@ -29,11 +29,17 @@ var map = null;
 /** On click action that shows battle information on the information panel
  * battle: battle object containing all information
 */
-/*function showInfo(battle) {
-	console.log("clicked on circle");
-	document.getElementById("header-t").innerHTML = battle["name"];
-	document.getElementsByClassName("info-content").innerHTML = "<p>" + battle["note"] + "</p>";
-}*/
+function showInfo(e) {
+	var name = e.target.options.title;
+    document.getElementById("header-t").innerHTML = name;
+    var info = null;
+    for (var i = 0; i < data.length; i++) {
+        if (data[i].name === name) {
+            info = data[i].note;
+        }
+    }
+    document.getElementById("info-content").innerHTML =  "<p>" + info + "</p>";
+}
 
 
 
@@ -173,15 +179,7 @@ function paintBattles(elemnts) {
 							title: elemnts[i].name
 						}
 					).addTo(map).on("click", function(e) {
-				        var name = e.target.options.title;
-                        document.getElementById("header-t").innerHTML = name;
-                        var info = null;
-                        for (var i = 0; i < data.length; i++) {
-                            if (data[i].name === name) {
-                                info = data[i].note;
-                            }
-                        }
-                        document.getElementById("info-content").innerHTML =  "<p>" + info + "</p>";
+						showInfo(e);
 			});
 
 			if (elemnts[i].defender_1 in colors) {
@@ -202,15 +200,8 @@ function paintBattles(elemnts) {
 					 fillOpacity: 0.1,
                      title: elemnts[i].name
 					 }).addTo(map).on("click", function(e) {
-				        var name = e.target.options.title;
-                        document.getElementById("header-t").innerHTML = name;
-                        var info = null;
-                        for (var i = 0; i < data.length; i++) {
-                            if (data[i].name === name) {
-                                info = data[i].note;
-                            }
-                        }
-                        document.getElementById("info-content").innerHTML =  "<p>" + info + "</p>";
+					 	showInfo(e);
+				        
 			});
 		}
 	}
