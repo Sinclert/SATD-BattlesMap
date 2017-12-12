@@ -112,34 +112,34 @@ function getBattles(text) {
 
 
 /** Function that paints all the battle data in the map */
-function paintBattles() {
+function paintBattles(elemnts) {
 
-	for (var i = 0; i < data.length - 1; i++) {
+	for (var i = 0; i < elemnts.length - 1; i++) {
 
 		// Radius for circle asignation, multiplied by 10 so that it can be seen
-		var radius = data[i].attacker_size * 10;
+		var radius = elemnts[i].attacker_size * 10;
 
 		// Color assignation by house
 		var color = null;
-		if (data[i].attacker_1 in colors) {
-			color = colors[data[i].attacker_1];
+		if (elemnts[i].attacker_1 in colors) {
+			color = colors[elemnts[i].attacker_1];
 		} else {
-			var aux = data[i].attacker_1.split(' ');
+			var aux = elemnts[i].attacker_1.split(' ');
 			if (aux[0] in colors) {
 				color = colors[aux[0]];
 			}
 		}
-		if (data[i].lat === "" || data[i].lon === "") {
+		if (elemnts[i].lat === "" || elemnts[i].lon === "") {
 			continue;
 		} else {
 			// Attacker circle
-			L.circle([data[i].lat, data[i].lng], 
+			L.circle([elemnts[i].lat, elemnts[i].lng], 
 						radius, 
 						{
 							fillColor: color,
 							color: color,
 							fillOpacity: 0.1,
-							title: data[i].name
+							title: elemnts[i].name
 						}
 					).addTo(map).on("click", function(e) {
 					console.log(e);
@@ -160,19 +160,19 @@ function paintBattles() {
 						ee[0].innerHTML = "<p>" + battle["note"] + "</p>";
 					 });*/
 
-			if (data[i].defender_1 in colors) {
-				color = colors[data[i].defender_1];
+			if (elemnts[i].defender_1 in colors) {
+				color = colors[elemnts[i].defender_1];
 			} else {
-				var aux2 = data[i].defender_1.split(' ');
+				var aux2 = elemnts[i].defender_1.split(' ');
 				if (aux2[0] in colors) {
 					color = colors[aux2[0]];
 				}
 			}
 			
-			radius = data[i].defender_size * 10;
+			radius = elemnts[i].defender_size * 10;
 			
 			//Defender circle
-			L.circle([data[i].lat, data[i].lng], radius, {
+			L.circle([elemnts[i].lat, elemnts[i].lng], radius, {
 					 fillColor: color,
 					 color: color,
 					 fillOpacity: 0.1
@@ -211,7 +211,7 @@ function create() {
 	getBattles(fileData);
 
 	// Show battles data on the map
-	paintBattles();
+	paintBattles(data);
 	
 	// Add event listener to the info panel
 	document.getElementById("info-title").addEventListener('click', show, false);
