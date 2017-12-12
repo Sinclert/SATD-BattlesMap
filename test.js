@@ -67,6 +67,21 @@ function readTextFile(file) {
 
 
 
+function lol() {
+	var year = document.getElementById("slider").value;
+
+	// Erase all previous circles
+	map.eachLayer(function (layer) {
+    	map.removeLayer(layer);
+	});
+
+	var filteredArray = data.filter(function(object) {
+		return (object['year'] === year);
+	})
+
+	paintBattles(filteredArray);
+}
+
 
 /** File that stores all battle info in the global variable data from a text
  * text: string variable containing battle information

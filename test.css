@@ -97,3 +97,61 @@ html, body, #map {
 		height: 80vh;
 	}
 }
+
+/** Layer Panel **/
+#layer-toggle {
+	display: none;
+}
+
+#layer-panel {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  padding: 12px;
+  background: #222;
+  z-index: 1000;
+  color: #faebd7; }
+  #layer-panel h3 {
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0 auto; }
+
+.layer-buttons {
+	width: 25%;
+	float: left;
+  text-transform: uppercase; 
+}
+
+#layer-buttons :last-child {
+    border-bottom: 1px solid #faebd7; }
+
+@media (max-width: 600px) {
+  #layer-panel {
+    display: inline-flex;
+    align-items: center;
+    top: 15%;
+    right: 0;
+    transform: translateX(calc(100% - 40px));
+    transition: all 0.3s ease-in-out; }
+  #layer-panel.layer-panel-active {
+    transform: translateX(0); }
+  #layer-toggle {
+    cursor: pointer;
+    display: block;
+    width: 40px;
+    transform: translateY(120%) rotate(-90deg);
+    padding: 10px;
+    margin-left: -20px;
+    letter-spacing: 1rem;
+    text-transform: uppercase; } }
+
+.layer-button {
+  color: #666;
+  border-top: 1px solid #faebd7;
+  padding: 6px;
+  cursor: pointer;
+  user-select: none;
+  font-family: 'Lato', sans-serif; }
+
+.toggle-active {
+  color: #faebd7; }

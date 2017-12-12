@@ -13,6 +13,23 @@
 	
 	<!-- Map container -->
 	<div id = "map"></div>
+
+	<div id="layer-panel">
+      <div id="layer-toggle" onclick="ctrl.toggleLayerPanel()">Layers</div>
+      <div id="layer-panel-content">
+        <h3>Years</h3>
+        <div class = "layer-buttons">
+          <input id="slider" type="range" min="298" max="300" value="299" orient="vertical" onchange="lol()"/>
+        </div>
+        <div class ="layer-buttons">
+        	<p>300</p>
+        	<br>
+        	<p>299</p>
+        	<br>
+        	<p>298</p>
+        </div>
+      </div>
+    </div>
 	
 	<!-- Info panel container -->
 	<div id = "info-panel-placeholder">
