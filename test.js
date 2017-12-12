@@ -115,7 +115,7 @@ function getBattles(text) {
 function paintBattles(elemnts) {
 
 	for (var i = 0; i < elemnts.length - 1; i++) {
-
+        
 		// Radius for circle asignation, multiplied by 10 so that it can be seen
 		var radius = elemnts[i].attacker_size * 10;
 
@@ -142,23 +142,16 @@ function paintBattles(elemnts) {
 							title: elemnts[i].name
 						}
 					).addTo(map).on("click", function(e) {
-					console.log(e);
-
-				//document.getElementById("header-t").innerHTML = battle["name"];
-				//var ee = document.getElementsByClassName("info-content");
-				//ee[0].innerHTML = "<p>" + battle["note"] + "</p>";
+				        var name = e.target.options.title;
+                        document.getElementById("header-t").innerHTML = name;
+                        var info = null;
+                        for (var i = 0; i < data.length; i++) {
+                            if (data[i].name === name) {
+                                info = data[i].note;
+                            }
+                        }
+                        document.getElementById("info-content").innerHTML =  "<p>" + info + "</p>";
 			});
-					/*;
-
-			map.on("click", function(e) {
-				console.log(e);
-			});
-
-			/*.on("click", function (data[i]) {
-						document.getElementById("header-t").innerHTML = battle["name"];
-						var ee = document.getElementsByClassName("info-content");
-						ee[0].innerHTML = "<p>" + battle["note"] + "</p>";
-					 });*/
 
 			if (elemnts[i].defender_1 in colors) {
 				color = colors[elemnts[i].defender_1];
@@ -175,8 +168,19 @@ function paintBattles(elemnts) {
 			L.circle([elemnts[i].lat, elemnts[i].lng], radius, {
 					 fillColor: color,
 					 color: color,
-					 fillOpacity: 0.1
-					 }).addTo(map);//.on("click", showInfo(data[i]));
+					 fillOpacity: 0.1,
+                     title: elemnts[i].name
+					 }).addTo(map).on("click", function(e) {
+				        var name = e.target.options.title;
+                        document.getElementById("header-t").innerHTML = name;
+                        var info = null;
+                        for (var i = 0; i < data.length; i++) {
+                            if (data[i].name === name) {
+                                info = data[i].note;
+                            }
+                        }
+                        document.getElementById("info-content").innerHTML =  "<p>" + info + "</p>";
+			});
 		}
 	}
 }
