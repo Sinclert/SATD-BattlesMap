@@ -24,7 +24,10 @@ var colors = {
 var map = null;
 
 
-
+function toggleLayerPanel(){
+	const e=document.getElementById('layer-panel');
+	e.classList.toggle('layer-panel-active')
+}
 
 /** On click action that shows battle information on the information panel
  * battle: battle object containing all information
@@ -87,6 +90,7 @@ function clearMap() {
 
 
 function lol() {
+
 	var year = document.getElementById("slider").value;
 
 	// Erase all previous circles
