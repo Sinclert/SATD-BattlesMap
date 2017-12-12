@@ -66,14 +66,28 @@ function readTextFile(file) {
 }
 
 
+function clearMap() {
+    for(i in map._layers) {
+        if(map._layers[i]._path != undefined) {
+            try {
+                map.removeLayer(map._layers[i]);
+            }
+            catch(e) {
+                console.log("problem with " + e + map._layers[i]);
+            }
+        }
+    }
+}
+
 
 function lol() {
 	var year = document.getElementById("slider").value;
 
 	// Erase all previous circles
-	map.eachLayer(function (layer) {
-    	map.removeLayer(layer);
-	});
+	//map.eachLayer(function (layer) {
+    //	map.removeLayer(layer);
+	//});
+	clearMap();
 
 	var filteredArray = data.filter(function(object) {
 		return (object['year'] === year);
@@ -81,6 +95,8 @@ function lol() {
 
 	paintBattles(filteredArray);
 }
+
+
 
 
 /** File that stores all battle info in the global variable data from a text
