@@ -1,65 +1,97 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	
-	<title>Quick Start - Leaflet</title>
-
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
-
-    <style>
-        body {
-            padding: 0;
-            margin: 0;
-        }
-        html, body, #mapid {
-            height: 100%;
-            width: 100%;
-        }
-    </style>
-	
+	<title>Full screen Game of Thrones map</title>
+	<meta charset = "UTF-8" />
+	<link rel = "stylesheet" type = "text/css" href = "http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
+	<link rel = "stylesheet" type = "text/css" href = "./index.css">
 </head>
+	
+
 <body>
+	
+	<!-- Map container -->
+	<div id = "map"></div>
 
+	<div id="layer-panel">
+      <div id="layer-toggle" onclick="toggleLayerPanel()">Layers</div>
+      <div id="layer-panel-content">
+        <h3>Years</h3>
+        <div class = "layer-buttons">
+          <input id="slider" type="range" min="298" max="300" value="299" orient="vertical" onchange="lul()"/>
+        </div>
+        <div class ="layer-buttons">
+        	<p>300</p>
+        	<p>299</p>
+        	<p>298</p>
+        </div>
+      </div>
+      <br>
+      <div id="layer-panel-content">
+        <h3>Regions</h3>
+        <div class = "layer-buttons">
+          <input class="region-selector" type="checkbox" value="The Crownlands" onchange="lul()"/>
+          <br>
+          <input class="region-selector" type="checkbox" value="The North" onchange="lul()"/>
+          <br>
+          <input class="region-selector" type="checkbox" value="The Reach" onchange="lul()"/>
+          <br>
+          <input class="region-selector" type="checkbox" value="The Riverlands" onchange="lul()"/>
+          <br>
+          <input class="region-selector" type="checkbox" value="The Stormlands" onchange="lul()"/>
+          <br>
+          <input class="region-selector" type="checkbox" value="The Westerlands" onchange="lul()"/>
+        </div>
+        <div class ="layer-buttons" style="font-size:10px">
+        	<p>Crownlands</p>
+        	<p>North</p>
+        	<p>Reach</p>
+        	<p>Riverlands</p>
+        	<p>Stormlands</p>
+        	<p>Westerlands</p>
+        </div>
+      </div>
+    </div>
+	
+	<!-- Info panel container -->
+	<div id = "info-panel-placeholder">
 
+		<!-- Code from tutorial -->
+		<div ref = "container" id = "info-container">
 
-    <div id="mapid" style="width: 600px; height: 400px;"></div>
-    <script>
+			<div ref = "title" id = "info-title">
+				<h1 id = "header-t">Nothing Selected</h1>
+			</div>
 
-        var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+			<div id = "info-body">
+				<div id = "info-content-container">
+			  		<div ref = "content" id = "info-content">
+			  		</div>
+				</div>
 
-        L.tileLayer('https://cartocdn-ashbu.global.ssl.fastly.net/ramirocartodb/api/v1/map/named/tpl_756aec63_3adb_48b6_9d14_331c6cbc47cf/all/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-                'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-            id: 'mapbox.streets'
-        }).addTo(mymap);
+				<div id = "info-footer">
+			  		<div id = "blog-link">
+						<p>Representation of the battles taken place in the A Song of Ice and Fire universe. 
+							<a href = "https://blog.patricktriest.com/game-of-thrones-map-node-postgres-redis/" target = "_blank" ref = "noopener"> 
+							Based on this tutorial.</a>
+						</p>
+			  		</div>
+			  		<p>
+						<a href = "https://github.com/Sinclert/SATD-BattlesMap" target = "_blank" rel = "noopener">Source Code</a> |
+						<a href = "https://github.com/triestpa/Atlas-Of-Thrones/blob/master/attribution.md" target = "_blank" rel = "noopener">Attribution</a> |
+						<a href = "https://github.com/triestpa/Atlas-Of-Thrones/blob/master/LICENSE" target = "_blank" rel = "noopener">License
+			  		</p>
+				</div>
+		  	</div>
+		</div>
+	</div>
 
-        L.marker([51.5, -0.09]).addTo(mymap)
-            .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
-
-
-        var popup = L.popup();
-
-        function onMapClick(e) {
-            popup
-                .setLatLng(e.latlng)
-                .setContent("You clicked the map at " + e.latlng.toString())
-                .openOn(mymap);
-        }
-
-
-        mymap.on('click', onMapClick);
-
-    </script>
-
-
+	<!-- Link to the leaflet library -->
+	<script src = "http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+	
+	<!-- Script with all related map stuff -->
+	<script src = "./index.js"></script>
 
 </body>
 </html>
