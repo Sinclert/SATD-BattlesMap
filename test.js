@@ -26,32 +26,36 @@ var map = null;
 // Battle icons
 var ambush = L.icon({
                 iconUrl: './icons/ambush.png',
+                iconSize:     [20, 20],
                 shadowSize:   [0, 0], // size of the shadow
-                iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+                iconAnchor:   [10, 10], // point of the icon which will correspond to marker's location
                 shadowAnchor: [0, 0],  // the same for the shadow
                 popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
             });
 
 var pitched = L.icon({
                 iconUrl: './icons/pitched.png',
+                iconSize:     [20, 20],
                 shadowSize:   [0, 0], // size of the shadow
-                iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+                iconAnchor:   [10, 10], // point of the icon which will correspond to marker's location
                 shadowAnchor: [0, 0],  // the same for the shadow
                 popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
             });
 
 var siege = L.icon({
                 iconUrl: './icons/siege.png',
+                iconSize:     [17, 20],
                 shadowSize:   [0, 0], // size of the shadow
-                iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+                iconAnchor:   [8.5, 10], // point of the icon which will correspond to marker's location
                 shadowAnchor: [0, 0],  // the same for the shadow
                 popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
             });
 
 var razing = L.icon({
                 iconUrl: './icons/razing.png',
+                iconSize:     [30, 30],
                 shadowSize:   [0, 0], // size of the shadow
-                iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+                iconAnchor:   [15, 15], // point of the icon which will correspond to marker's location
                 shadowAnchor: [0, 0],  // the same for the shadow
                 popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
             });
@@ -118,9 +122,10 @@ function readTextFile(file) {
 }
 
 
+/** Clears the map from circles and popups */
 function clearMap() {
     for(i in map._layers) {
-        if(map._layers[i]._path != undefined) {
+        if(map._layers[i]._path != undefined || map._layers[i]._icon != undefined) {
             try {
                 map.removeLayer(map._layers[i]);
             }
@@ -254,17 +259,14 @@ function paintBattles(elemnts) {
 				        
 			});
             
-            var size = Math.max(elemnts[i].attacker_size, elemnts[i].defender_size);
-            console.log(size);
-            
             if (elemnts[i].battle_type === "pitched battle") {
-                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: pitched, iconSize: [size * 20, size * 20]}).addTo(map);
+                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: pitched}).addTo(map);
             } else if(elemnts[i].battle_type === "ambush") {
-                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: ambush, iconSize: [size * 20, size * 20]}).addTo(map);
+                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: ambush}).addTo(map);
             } else if(elemnts[i].battle_type === "siege") {
-                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: siege, iconSize: [size * 17, size * 20]}).addTo(map);
+                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: siege}).addTo(map);
             } else {
-                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: razing, iconSize: [size * 20, size * 20]}).addTo(map);
+                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: razing}).addTo(map);
             }
 		}
 	}
