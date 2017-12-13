@@ -87,10 +87,10 @@ function showInfo(e) {
 */
 function showLegend() {
     document.getElementById("header-t").innerHTML = "Captions";
-    document.getElementById("info-content").innerHTML =  "<img src = './icons/ambush.png' width=40 height=40>" + "is ambush battle" + "<br>"
-    													+ "<img src = './icons/pitched.png' width=40 height=40>" + "is piched battle" + "<br>"
-    													+ "<img src = './icons/siege.png' width=40 height=40>" + "is siege battle" + "<br>"
-    													+ "<img src = './icons/razing.png' width=40 height=40>" + "is razing battle" + "<br>"
+    document.getElementById("info-content").innerHTML =  "<img src = './icons/ambush.png' width=40 height=40>" + "is ambush" + "<br>"
+    													+ "<img src = './icons/pitched.png' width=40 height=40>" + "is pitched battle" + "<br>"
+    													+ "<img src = './icons/siege.png' width=40 height=40>" + "is siege" + "<br>"
+    													+ "<img src = './icons/razing.png' width=40 height=40>" + "is razing" + "<br>"
     													+ "<br>"
     													+ "<div class='box Lannister'></div>" + "is Lannister" + "<br><br>"
     													+ "<div class='box Stark'></div>" + "<p style='float:left; margin:0; padding-left:0'> is Stark</p>" + "<br><br>"
@@ -158,18 +158,26 @@ function clearMap() {
 function lul() {
 	var year = document.getElementById("slider").value;
 	var regions = Array.from(document.getElementsByClassName("region-selector"));
+    var battles = Array.from(document.getElementsByClassName("battle-selector"));
 	var regions2 = [];
+    var battles2 = [];
 
 	regions.forEach(function(element) {
 		if (element.checked == true) {
 			regions2.push(element.value);
 		}
 	});
-
+    
+    battles.forEach(function(element) {
+        if (element.checked == true) {
+            battles2.push(element.value);
+        }
+    });
+    
 	clearMap();
 
 	var filteredArray = data.filter(function(object) {
-		return (regions2.includes(object['region']) && object['year'] === year);
+		return (regions2.includes(object['region']) && object['year'] === year && battles2.includes(object['battle_type']));
 	})
 
 	paintBattles(filteredArray);
