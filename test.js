@@ -260,13 +260,25 @@ function paintBattles(elemnts) {
 			});
             
             if (elemnts[i].battle_type === "pitched battle") {
-                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: pitched}).addTo(map);
+                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: pitched, title: elemnts[i].name}).addTo(map).on("click", function(e) {
+					 	showInfo(e);
+				        
+			     });
             } else if(elemnts[i].battle_type === "ambush") {
-                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: ambush}).addTo(map);
+                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: ambush, title: elemnts[i].name}).addTo(map).on("click", function(e) {
+					 	showInfo(e);
+				        
+			     });
             } else if(elemnts[i].battle_type === "siege") {
-                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: siege}).addTo(map);
+                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: siege, title: elemnts[i].name}).addTo(map).on("click", function(e) {
+					 	showInfo(e);
+				        
+			});
             } else {
-                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: razing}).addTo(map);
+                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: razing, title: elemnts[i].name}).addTo(map).on("click", function(e) {
+					 	showInfo(e);
+				        
+			     });
             }
 		}
 	}
