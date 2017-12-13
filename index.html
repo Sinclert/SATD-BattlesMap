@@ -7,10 +7,10 @@
 	<link rel = "stylesheet" type = "text/css" href = "http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
 	<link rel = "stylesheet" type = "text/css" href = "./index.css">
 </head>
-	
+
 
 <body>
-	
+
 	<!-- Map container -->
 	<div id = "map"></div>
 
@@ -23,37 +23,79 @@
         </div>
         <div class ="layer-buttons">
         	<p>300</p>
+            <br>
+            <br>
         	<p>299</p>
+            <br>
+            <br>
         	<p>298</p>
+            <br>
         </div>
       </div>
       <br>
       <div id="layer-panel-content">
         <h3>Regions</h3>
-        <div class = "layer-buttons">
-          <input class="region-selector" type="checkbox" value="The Crownlands" onchange="lul()"/>
+        <div class = "layer-buttons2">
+          <label>
+            <input class="region-selector" type="checkbox" value="The Crownlands" onchange="lul()"/>
+            Crownlands
+          </label>
           <br>
-          <input class="region-selector" type="checkbox" value="The North" onchange="lul()"/>
+          <label>
+            <input class="region-selector" type="checkbox" value="The North" onchange="lul()"/>
+            North
+          </label>
           <br>
-          <input class="region-selector" type="checkbox" value="The Reach" onchange="lul()"/>
+          <label>
+            <input class="region-selector" type="checkbox" value="The Reach" onchange="lul()"/>
+            Reach
+          </label>
           <br>
-          <input class="region-selector" type="checkbox" value="The Riverlands" onchange="lul()"/>
+          <label>
+            <input class="region-selector" type="checkbox" value="The Riverlands" onchange="lul()"/>
+            Riverlands
+          </label>
           <br>
-          <input class="region-selector" type="checkbox" value="The Stormlands" onchange="lul()"/>
+          <label>
+            <input class="region-selector" type="checkbox" value="The Stormlands" onchange="lul()"/>
+            Stormlands
+          </label>
           <br>
-          <input class="region-selector" type="checkbox" value="The Westerlands" onchange="lul()"/>
-        </div>
-        <div class ="layer-buttons" style="font-size:10px">
-        	<p>Crownlands</p>
-        	<p>North</p>
-        	<p>Reach</p>
-        	<p>Riverlands</p>
-        	<p>Stormlands</p>
-        	<p>Westerlands</p>
+          <label>
+            <input class="region-selector" type="checkbox" value="The Westerlands" onchange="lul()"/>
+            Westerlands
+          </label>
         </div>
       </div>
+
+      <div id="layer-panel-content">
+        <h3>Battle types</h3>
+        <div class = "layer-buttons2">
+          <label>
+            <input class="battle-selector" type="checkbox" value="ambush" onchange="lul()"/>
+            Ambush
+          </label>
+          <br>
+          <label>
+            <input class="battle-selector" type="checkbox" value="pitched battle" onchange="lul()"/>
+            Pitched Battle
+          </label>
+          <br>
+          <label>
+            <input class="battle-selector" type="checkbox" value="siege" onchange="lul()"/>
+            Siege
+          </label>
+          <br>
+          <label>
+            <input class="battle-selector" type="checkbox" value="razing" onchange="lul()"/>
+            Razing
+          </label>
+          <br>
+        </div>
+
+      </div>
     </div>
-	
+
 	<!-- Info panel container -->
 	<div id = "info-panel-placeholder">
 
@@ -72,8 +114,8 @@
 
 				<div id = "info-footer">
 			  		<div id = "blog-link">
-						<p>Representation of the battles taken place in the A Song of Ice and Fire universe. 
-							<a href = "https://blog.patricktriest.com/game-of-thrones-map-node-postgres-redis/" target = "_blank" ref = "noopener"> 
+						<p>Representation of the battles taken place in the A Song of Ice and Fire universe.
+							<a href = "https://blog.patricktriest.com/game-of-thrones-map-node-postgres-redis/" target = "_blank" ref = "noopener">
 							Based on this tutorial.</a>
 						</p>
 			  		</div>
@@ -89,7 +131,7 @@
 
 	<!-- Link to the leaflet library -->
 	<script src = "http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
-	
+
 	<!-- Script with all related map stuff -->
 	<script src = "./index.js"></script>
 
