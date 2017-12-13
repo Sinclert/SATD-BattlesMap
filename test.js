@@ -90,7 +90,7 @@ function clearMap() {
 
 
 function lul() {
-
+	var year = document.getElementById("slider").value;
 	var regions = Array.from(document.getElementsByClassName("region-selector"));
 	var regions2 = [];
 
@@ -103,26 +103,7 @@ function lul() {
 	clearMap();
 
 	var filteredArray = data.filter(function(object) {
-		return regions2.includes(object['region']);
-	})
-
-	paintBattles(filteredArray);
-}
-
-
-
-function lol() {
-
-	var year = document.getElementById("slider").value;
-
-	// Erase all previous circles
-	//map.eachLayer(function (layer) {
-    //	map.removeLayer(layer);
-	//});
-	clearMap();
-
-	var filteredArray = data.filter(function(object) {
-		return (object['year'] === year);
+		return (regions2.includes(object['region']) && object['year'] === year);
 	})
 
 	paintBattles(filteredArray);
