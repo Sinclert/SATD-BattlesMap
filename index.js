@@ -2,7 +2,7 @@
 var fileData = null;
 var data = [];
 var colors = {
-	Lannister: "#cdd10a",
+    Lannister: "#cdd10a",
 	Stark: "#9ddce8",
 	Greyjoy: "#999d9e",
 	Bolton: "#ce4021",
@@ -20,10 +20,7 @@ var colors = {
 	Tyrell: "#ffb7ef",
 	Blackwood: "#ff9b9b"
 };
-
 var map = null;
-
-// Battle icons
 var ambush = L.icon({
                 iconUrl: './icons/ambush.png',
                 iconSize:     [25, 25],
@@ -32,7 +29,6 @@ var ambush = L.icon({
                 shadowAnchor: [0, 0],  // the same for the shadow
                 popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
             });
-
 var pitched = L.icon({
                 iconUrl: './icons/pitched.png',
                 iconSize:     [25, 25],
@@ -41,7 +37,6 @@ var pitched = L.icon({
                 shadowAnchor: [0, 0],  // the same for the shadow
                 popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
             });
-
 var siege = L.icon({
                 iconUrl: './icons/siege.png',
                 iconSize:     [20, 22],
@@ -50,7 +45,6 @@ var siege = L.icon({
                 shadowAnchor: [0, 0],  // the same for the shadow
                 popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
             });
-
 var razing = L.icon({
                 iconUrl: './icons/razing.png',
                 iconSize:     [30, 30],
@@ -60,10 +54,13 @@ var razing = L.icon({
                 popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
             });
 
+
+/** Shows the information panel */
 function toggleLayerPanel(){
 	const e=document.getElementById('layer-panel');
 	e.classList.toggle('layer-panel-active')
 }
+
 
 /** On click action that shows battle information on the information panel
  * battle: battle object containing all information
@@ -80,7 +77,6 @@ function showInfo(e) {
     document.getElementById("info-content").innerHTML =  "<p>" + info + "</p>";
     document.getElementById("info-container").classList.add('info-active');
 }
-
 
 
 /** On click action that shows battle information on the information panel
@@ -119,8 +115,6 @@ function show() {
 }
 
 
-
-
 /** Reads a csv file and stores the complete file on the global variable fileData
  * file: string containing the relative path to the local file
 */
@@ -156,6 +150,7 @@ function clearMap() {
 }
 
 
+/** Filters data by user selections and paints the result on the map */
 function lul() {
 	var year = document.getElementById("slider").value;
 	var regions = Array.from(document.getElementsByClassName("region-selector"));
@@ -183,8 +178,6 @@ function lul() {
 
 	paintBattles(filteredArray);
 }
-
-
 
 
 /** File that stores all battle info in the global variable data from a text
@@ -226,8 +219,6 @@ function getBattles(text) {
 		data.push(aux);
 	}
 }
-
-
 
 
 /** Function that paints all the battle data in the map */
@@ -312,8 +303,6 @@ function paintBattles(elemnts) {
 }
 
 
-
-
 /** Initializes the map data and calls the functions to paint the data in the map */
 function create() {
 	map = L.map('map').setView([5,20], 4);
@@ -359,8 +348,6 @@ function create() {
 	// Add event listener to the info panel
 	document.getElementById("info-title").addEventListener('click', show, false);
 }
-
-
 
 
 // Start painting the map

@@ -14,95 +14,100 @@
 	<!-- Map container -->
 	<div id = "map"></div>
 
-	<div id="layer-panel">
-      <div id="layer-toggle" onclick="toggleLayerPanel()">Layers</div>
-      <div id="layer-panel-content">
-        <h3>Years</h3>
-        <div class = "layer-buttons">
-          <input id="slider" type="range" min="298" max="300" value="299" orient="vertical" onchange="lul()"/>
-        </div>
-        <div class ="layer-buttons">
-        	<p>300</p>
+    <!-- Selector container -->
+    <div id="layer-panel">
+        <div id="layer-toggle" onclick="toggleLayerPanel()">Layers</div>
+            
+            <!-- Year selector -->
+            <div id="layer-panel-content">
+                <h3>Years</h3>
+                <div class = "layer-buttons">
+                    <input id="slider" type="range" min="298" max="300" value="299" orient="vertical" onchange="lul()"/>
+                </div>
+                <div class ="layer-buttons">
+                    <p>300</p>
+                    <br>
+                    <br>
+                    <p>299</p>
+                    <br>
+                    <br>
+                    <p>298</p>
+                    <br>
+                </div>
+            </div>
             <br>
-            <br>
-        	<p>299</p>
-            <br>
-            <br>
-        	<p>298</p>
-            <br>
-        </div>
-      </div>
-      <br>
-      <div id="layer-panel-content">
-        <h3>Regions</h3>
-        <div class = "layer-buttons2">
-          <label>
-            <input class="region-selector" type="checkbox" value="The Crownlands" onchange="lul()"/>
-            Crownlands
-          </label>
-          <br>
-          <label>
-            <input class="region-selector" type="checkbox" value="The North" onchange="lul()"/>
-            North
-          </label>
-          <br>
-          <label>
-            <input class="region-selector" type="checkbox" value="The Reach" onchange="lul()"/>
-            Reach
-          </label>
-          <br>
-          <label>
-            <input class="region-selector" type="checkbox" value="The Riverlands" onchange="lul()"/>
-            Riverlands
-          </label>
-          <br>
-          <label>
-            <input class="region-selector" type="checkbox" value="The Stormlands" onchange="lul()"/>
-            Stormlands
-          </label>
-          <br>
-          <label>
-            <input class="region-selector" type="checkbox" value="The Westerlands" onchange="lul()"/>
-            Westerlands
-          </label>
-        </div>
-      </div>
-
-      <div id="layer-panel-content">
-        <h3>Battle types</h3>
-        <div class = "layer-buttons2">
-          <label>
-            <input class="battle-selector" type="checkbox" value="ambush" onchange="lul()"/>
-            Ambush
-          </label>
-          <br>
-          <label>
-            <input class="battle-selector" type="checkbox" value="pitched battle" onchange="lul()"/>
-            Pitched Battle
-          </label>
-          <br>
-          <label>
-            <input class="battle-selector" type="checkbox" value="siege" onchange="lul()"/>
-            Siege
-          </label>
-          <br>
-          <label>
-            <input class="battle-selector" type="checkbox" value="razing" onchange="lul()"/>
-            Razing
-          </label>
-          <br>
+            
+            <!-- Regions selector -->
+            <div id="layer-panel-content">
+                <h3>Regions</h3>
+                <div class = "layer-buttons2">
+                    <label>
+                        <input class="region-selector" type="checkbox" value="The Crownlands" onchange="lul()"/>
+                        Crownlands
+                    </label>
+                    <br>
+                    <label>
+                        <input class="region-selector" type="checkbox" value="The North" onchange="lul()"/>
+                        North
+                    </label>
+                    <br>
+                    <label>
+                        <input class="region-selector" type="checkbox" value="The Reach" onchange="lul()"/>
+                        Reach
+                    </label>
+                    <br>
+                    <label>
+                        <input class="region-selector" type="checkbox" value="The Riverlands" onchange="lul()"/>
+                        Riverlands
+                    </label>
+                    <br>
+                    <label>
+                        <input class="region-selector" type="checkbox" value="The Stormlands" onchange="lul()"/>
+                        Stormlands
+                    </label>
+                    <br>
+                    <label>
+                        <input class="region-selector" type="checkbox" value="The Westerlands" onchange="lul()"/>
+                        Westerlands
+                    </label>
+                </div>
         </div>
 
-      </div>
+        <!-- Battles selector -->
+        <div id="layer-panel-content">
+            <h3>Battle types</h3>
+            <div class = "layer-buttons2">
+                <label>
+                    <input class="battle-selector" type="checkbox" value="ambush" onchange="lul()"/>
+                    Ambush
+                </label>
+                <br>
+                <label>
+                    <input class="battle-selector" type="checkbox" value="pitched battle" onchange="lul()"/>
+                    Pitched Battle
+                </label>
+                <br>
+                <label>
+                    <input class="battle-selector" type="checkbox" value="siege" onchange="lul()"/>
+                    Siege
+                </label>
+                <br>
+                <label>
+                    <input class="battle-selector" type="checkbox" value="razing" onchange="lul()"/>
+                    Razing
+                </label>
+                <br>
+            </div>
+        </div>
     </div>
 
 	<!-- Info panel container -->
 	<div id = "info-panel-placeholder">
-
-		<!-- Code from tutorial -->
+        
+        <!-- Code from tutorial -->
 		<div ref = "container" id = "info-container">
-
-			<div ref = "title" id = "info-title">
+            
+            <div ref = "title" id = "info-title">
 				<h1 id = "header-t">Nothing Selected</h1>
 			</div>
 
