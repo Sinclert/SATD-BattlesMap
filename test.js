@@ -23,6 +23,46 @@ var colors = {
 
 var map = null;
 
+// Battle icons
+var ambush = L.icon({
+                iconUrl: './icons/ambush.png',
+
+                iconSize:     [20, 20], // size of the icon
+                shadowSize:   [0, 0], // size of the shadow
+                iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+                shadowAnchor: [0, 0],  // the same for the shadow
+                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            });
+
+var pitched = L.icon({
+                iconUrl: './icons/pitched.png',
+
+                iconSize:     [20, 20], // size of the icon
+                shadowSize:   [0, 0], // size of the shadow
+                iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+                shadowAnchor: [0, 0],  // the same for the shadow
+                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            });
+
+var siege = L.icon({
+                iconUrl: './icons/siege.png',
+
+                iconSize:     [20, 20], // size of the icon
+                shadowSize:   [0, 0], // size of the shadow
+                iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+                shadowAnchor: [0, 0],  // the same for the shadow
+                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            });
+
+var razing = L.icon({
+                iconUrl: './icons/razing.png',
+
+                iconSize:     [30, 30], // size of the icon
+                shadowSize:   [0, 0], // size of the shadow
+                iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+                shadowAnchor: [0, 0],  // the same for the shadow
+                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            });
 
 function toggleLayerPanel(){
 	const e=document.getElementById('layer-panel');
@@ -210,6 +250,16 @@ function paintBattles(elemnts) {
 					 	showInfo(e);
 				        
 			});
+            
+            if (elemnts[i].battle_type === "pitched battle") {
+                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: pitched}).addTo(map);
+            } else if(elemnts[i].battle_type === "ambush") {
+                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: ambush}).addTo(map);
+            } else if(elemnts[i].battle_type === "siege") {
+                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: siege}).addTo(map);
+            } else {
+                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: razing}).addTo(map);
+            }
 		}
 	}
 }
