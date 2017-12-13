@@ -86,6 +86,17 @@ function showInfo(e) {
 
 
 
+/** On click action that shows battle information on the information panel
+ * battle: battle object containing all information
+*/
+function showLegend() {
+    document.getElementById("header-t").innerHTML = "Legend";
+    document.getElementById("info-content").innerHTML =  "<img src = './icons/ambush.png' width=50 height=50>" + "Means ambush" + "<br>"
+    													+ "<img src = './icons/pitched.png' width=50 height=50>" + "Means Piched" + "<br>"
+    													+ "<img src = './icons/siege.png' width=50 height=50>" + "Means Siege" + "<br>"
+    													+ "<img src = './icons/razing.png' width=50 height=50>" + "Means Razing";
+}
+
 
 /** Function that shows the info panel on-click */
 function show() {
@@ -280,6 +291,10 @@ function create() {
 		minZoom: 4,
 		maxBounds: [ [ 50, -30 ], [ -45, 100 ] ]
 	}).addTo(map);
+
+	map.on("click", function(e) {
+		showLegend();
+	});
 
 	// Change the position of the zoom control
 	map.zoomControl.setPosition('bottomright');
