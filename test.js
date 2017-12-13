@@ -306,7 +306,9 @@ function create() {
 	getBattles(fileData);
 
 	// Show battles data on the map
-	paintBattles(data);
+	lul();
+
+	showLegend();
 	
 	// Add event listener to the info panel
 	document.getElementById("info-title").addEventListener('click', show, false);
