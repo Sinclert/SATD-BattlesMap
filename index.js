@@ -86,7 +86,7 @@ function showInfo(e) {
  * battle: battle object containing all information
 */
 function showLegend() {
-    document.getElementById("header-t").innerHTML = "Legend";
+    document.getElementById("header-t").innerHTML = "Captions";
     document.getElementById("info-content").innerHTML =  "<img src = './icons/ambush.png' width=40 height=40>" + "is ambush battle" + "<br>"
     													+ "<img src = './icons/pitched.png' width=40 height=40>" + "is piched battle" + "<br>"
     													+ "<img src = './icons/siege.png' width=40 height=40>" + "is siege battle" + "<br>"
@@ -98,15 +98,15 @@ function showLegend() {
     													+ "<div class='box Bolton'></div>" + "<p style='float:left; margin:0; padding:0'> is Bolton</p>" + "<br><br>"
     													+ "<div class='box Baratheon'></div>" + "<p style='float:left; margin:0; padding:0'> is Baratheon</p>" + "<br><br>"
     													+ "<div class='box Darry'></div>" + "<p style='float:left; margin:0; padding:0'> is Darry</p>" + "<br><br>"
-    													+ "<div class='box Brotherhood'></div>" + "<p style='float:left; margin:0; padding:0'> is Brotherhood</p>" + "<br><br>"
+    													+ "<div class='box Brotherhood'></div>" + "<p style='float:left; margin:0; padding:0'> is Brotherhood without Banners</p>" + "<br><br>"
     													+ "<div class='box Frey'></div>" + "<p style='float:left; margin:0; padding:0'> is Frey</p>" + "<br><br>"
-    													+ "<div class='box Free'></div>" + "<p style='float:left; margin:0; padding:0'> is Free</p>" + "<br><br>"
-    													+ "<div class='box Brave'></div>" + "<p style='float:left; margin:0; padding:0'> is Brave</p>" + "<br><br>"
+    													+ "<div class='box Free'></div>" + "<p style='float:left; margin:0; padding:0'> is Free Folk</p>" + "<br><br>"
+    													+ "<div class='box Brave'></div>" + "<p style='float:left; margin:0; padding:0'> is Brave Companions</p>" + "<br><br>"
     													+ "<div class='box Bracken'></div>" + "<p style='float:left; margin:0; padding:0'> is Bracken</p>" + "<br><br>"
     													+ "<div class='box Karstark'></div>" + "<p style='float:left; margin:0; padding:0'> is Karstark</p>" + "<br><br>"
     													+ "<div class='box Tully'></div>" + "<p style='float:left; margin:0; padding:0'> is Tully</p>" + "<br><br>"
     													+ "<div class='box Mallister'></div>" + "<p style='float:left; margin:0; padding:0'> is Mallister</p>" + "<br><br>"
-    													+ "<div class='box Night'></div>" + "<p style='float:left; margin:0; padding:0'> is Night</p>" + "<br><br>"
+    													+ "<div class='box Night'></div>" + "<p style='float:left; margin:0; padding:0'> is Night's Watch</p>" + "<br><br>"
     													+ "<div class='box Tyrell'></div>" + "<p style='float:left; margin:0; padding:0'> is Tyrell</p>" + "<br><br>"
     													+ "<div class='box Blackwood'></div>" + "<p style='float:left; margin:0; padding:0'> is Blackwood</p>";
 }
