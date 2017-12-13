@@ -78,6 +78,7 @@ function showInfo(e) {
         }
     }
     document.getElementById("info-content").innerHTML =  "<p>" + info + "</p>";
+    document.getElementById("info-container").classList.add('info-active');
 }
 
 
@@ -320,7 +321,14 @@ function create() {
 	}).addTo(map);
 
 	map.on("click", function(e) {
-		showLegend();
+		var a = document.getElementById("header-t");
+
+		if (a.innerHTML == "Captions") {
+			document.getElementById("info-container").classList.remove('info-active');
+		}
+		else {
+			showLegend();
+		}
 	});
 
 	// Change the position of the zoom control
