@@ -128,6 +128,7 @@ html, body, #map {
   width: 25%;
   float: left;
   text-transform: uppercase; 
+  font-size: 10px;
 }
 
 #layer-buttons:last-child {
