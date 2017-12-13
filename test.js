@@ -26,27 +26,27 @@ var map = null;
 // Battle icons
 var ambush = L.icon({
                 iconUrl: './icons/ambush.png',
-                iconSize:     [20, 20],
+                iconSize:     [25, 25],
                 shadowSize:   [0, 0], // size of the shadow
-                iconAnchor:   [10, 10], // point of the icon which will correspond to marker's location
+                iconAnchor:   [12.5, 12.5], // point of the icon which will correspond to marker's location
                 shadowAnchor: [0, 0],  // the same for the shadow
                 popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
             });
 
 var pitched = L.icon({
                 iconUrl: './icons/pitched.png',
-                iconSize:     [20, 20],
+                iconSize:     [25, 25],
                 shadowSize:   [0, 0], // size of the shadow
-                iconAnchor:   [10, 10], // point of the icon which will correspond to marker's location
+                iconAnchor:   [12.5, 12.5], // point of the icon which will correspond to marker's location
                 shadowAnchor: [0, 0],  // the same for the shadow
                 popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
             });
 
 var siege = L.icon({
                 iconUrl: './icons/siege.png',
-                iconSize:     [17, 20],
+                iconSize:     [20, 22],
                 shadowSize:   [0, 0], // size of the shadow
-                iconAnchor:   [8.5, 10], // point of the icon which will correspond to marker's location
+                iconAnchor:   [10, 11], // point of the icon which will correspond to marker's location
                 shadowAnchor: [0, 0],  // the same for the shadow
                 popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
             });
@@ -87,10 +87,11 @@ function showInfo(e) {
 */
 function showLegend() {
     document.getElementById("header-t").innerHTML = "Legend";
-    document.getElementById("info-content").innerHTML =  "<img src = './icons/ambush.png' width=30 height=30>" + "is ambush battle" + "<br>"
-    													+ "<img src = './icons/pitched.png' width=30 height=30>" + "is piched battle" + "<br>"
-    													+ "<img src = './icons/siege.png' width=30 height=30>" + "is siege battle" + "<br>"
-    													+ "<img src = './icons/razing.png' width=30 height=30>" + "is razing battle" + "<br>"
+    document.getElementById("info-content").innerHTML =  "<img src = './icons/ambush.png' width=40 height=40>" + "is ambush battle" + "<br>"
+    													+ "<img src = './icons/pitched.png' width=40 height=40>" + "is piched battle" + "<br>"
+    													+ "<img src = './icons/siege.png' width=40 height=40>" + "is siege battle" + "<br>"
+    													+ "<img src = './icons/razing.png' width=40 height=40>" + "is razing battle" + "<br>"
+    													+ "<br>"
     													+ "<div class='box Lannister'></div>" + "is Lannister" + "<br><br>"
     													+ "<div class='box Stark'></div>" + "<p style='float:left; margin:0; padding-left:0'> is Stark</p>" + "<br><br>"
     													+ "<div class='box Greyjoy'></div>" + "<p style='float:left; margin:0; padding:0'> is Greyjoy</p>" + "<br><br>"

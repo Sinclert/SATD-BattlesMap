@@ -6,6 +6,7 @@ body {
 	overflow: hidden;
 	height: 100%;
 	width: 100%;
+	font-family: 'MedievalSharp', cursive;
 }
 
 a {
@@ -18,7 +19,6 @@ html, body, #map {
 }
 
 #info-title {
-	font-family: 'MedievalSharp', cursive;
 	height: 80px;
 	display: flex;
 	justify-content: center;
@@ -32,7 +32,6 @@ html, body, #map {
 	width: 100%;
 	
 	h1 {
-		font-family: 'MedievalSharp', cursive;
 		letter-spacing: 0.3rem;
 		max-width: 100%;
 		padding: 20px;
@@ -49,6 +48,7 @@ html, body, #map {
 	font-size: 1rem;
 	line-height: 1.25em;
 	font-weight: 300;
+	font-size: 20px;
 }
 
 #info-container {
@@ -162,12 +162,12 @@ html, body, #map {
 
 
 
- .box{
-    	width:30px;
-    	height:30px;
-    	float: left;
-    	margin-right: 10px;
-    }
+.box{
+ 	width: 40px;
+ 	height: 40px;
+ 	float: left;
+ 	margin-right: 10px;
+}
 
 .Lannister{
 	background: #cdd10a;
