@@ -1,7 +1,14 @@
-// Global variables
+/*	Authors:
+	Sinclert Pérez (Sinclert@hotmail.com)
+	Silvia Barbero (Silvia.br@protonmail.com)
+	Pablo León Pacheco (pleonpacheco@protonmail.com)
+*/
+
+
+/* ------------------------------ GLOBAL VARIABLES ------------------------------ */
 var fileData = null;
 var data = [];
-var colors = {
+var houses = {
     Lannister: "#cdd10a",
 	Stark: "#9ddce8",
 	Greyjoy: "#999d9e",
@@ -20,69 +27,98 @@ var colors = {
 	Tyrell: "#ffb7ef",
 	Blackwood: "#ff9b9b"
 };
+
 var map = null;
+
+
+
+/* ------------------------------ BATTLES ICONS ------------------------------ */
+
+// Icon to represent the ambush type of battle
 var ambush = L.icon({
-                iconUrl: './icons/ambush.png',
-                iconSize:     [25, 25],
-                shadowSize:   [0, 0], // size of the shadow
-                iconAnchor:   [12.5, 12.5], // point of the icon which will correspond to marker's location
-                shadowAnchor: [0, 0],  // the same for the shadow
-                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-            });
+	iconUrl: './icons/ambush.png',
+	iconSize:     [25, 25],
+	shadowSize:   [0, 0],
+	iconAnchor:   [12.5, 12.5],
+	shadowAnchor: [0, 0],
+	popupAnchor:  [-3, -76]
+});
+
+
+// Icon to represent the pitched type of battle
 var pitched = L.icon({
-                iconUrl: './icons/pitched.png',
-                iconSize:     [25, 25],
-                shadowSize:   [0, 0], // size of the shadow
-                iconAnchor:   [12.5, 12.5], // point of the icon which will correspond to marker's location
-                shadowAnchor: [0, 0],  // the same for the shadow
-                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-            });
+	iconUrl: './icons/pitched.png',
+	iconSize:     [25, 25],
+	shadowSize:   [0, 0],
+	iconAnchor:   [12.5, 12.5],
+	shadowAnchor: [0, 0],
+	popupAnchor:  [-3, -76]
+});
+
+
+// Icon to represent the siege type of battle
 var siege = L.icon({
-                iconUrl: './icons/siege.png',
-                iconSize:     [20, 22],
-                shadowSize:   [0, 0], // size of the shadow
-                iconAnchor:   [10, 11], // point of the icon which will correspond to marker's location
-                shadowAnchor: [0, 0],  // the same for the shadow
-                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-            });
+	iconUrl: './icons/siege.png',
+	iconSize:     [20, 22],
+	shadowSize:   [0, 0],
+	iconAnchor:   [10, 11],
+	shadowAnchor: [0, 0],
+	popupAnchor:  [-3, -76]
+});
+
+
+// Icon to represent the razing type of battle
 var razing = L.icon({
-                iconUrl: './icons/razing.png',
-                iconSize:     [30, 30],
-                shadowSize:   [0, 0], // size of the shadow
-                iconAnchor:   [15, 15], // point of the icon which will correspond to marker's location
-                shadowAnchor: [0, 0],  // the same for the shadow
-                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-            });
+	iconUrl: './icons/razing.png',
+	iconSize:     [30, 30],
+	shadowSize:   [0, 0],
+	iconAnchor:   [15, 15],
+	shadowAnchor: [0, 0],
+	popupAnchor:  [-3, -76]
+});
 
 
-/** Shows the information panel */
-function toggleLayerPanel(){
-	const e=document.getElementById('layer-panel');
-	e.classList.toggle('layer-panel-active')
+
+
+/* ------------------------------ TOGGLE PANELS FUNCTIONS ------------------------------ */
+
+
+/** Toggles the bottom information panel */
+function showInfoPanel() {
+	document.getElementById("info-container").classList.toggle('info-active');
 }
 
 
-/** On click action that shows battle information on the information panel
- * battle: battle object containing all information
-*/
-function showInfo(e) {
+/** Toggles the right layer panel */
+function toggleLayerPanel() {
+	document.getElementById('layer-panel').classList.toggle('layer-panel-active');
+}
+
+
+
+/* ------------------------- LOAD INFORMATION FUNCTIONS -------------------------- */
+
+
+/** On click action that loads battle information on the information panel */
+function loadBattleInfo(e) {
+
 	var name = e.target.options.title;
     document.getElementById("header-t").innerHTML = name;
+
     var info = null;
     for (var i = 0; i < data.length; i++) {
         if (data[i].name === name) {
             info = data[i].note;
         }
     }
+
     document.getElementById("info-content").innerHTML =  "<p>" + info + "</p>";
     document.getElementById("info-container").classList.add('info-active');
 }
 
 
-/** On click action that shows battle information on the information panel
- * battle: battle object containing all information
-*/
-function showLegend() {
+/** On click action that shows battle information on the information panel */
+function loadLegend() {
     document.getElementById("header-t").innerHTML = "Captions";
     document.getElementById("info-content").innerHTML =  "<img src = './icons/ambush.png' width=40 height=40>" + "is ambush" + "<br>"
     													+ "<img src = './icons/pitched.png' width=40 height=40>" + "is pitched battle" + "<br>"
@@ -109,10 +145,9 @@ function showLegend() {
 }
 
 
-/** Function that shows the info panel on-click */
-function show() {
-	document.getElementById("info-container").classList.toggle('info-active');
-}
+
+
+/* ------------------------------ READ CSV FUNCTIONS ------------------------------ */
 
 
 /** Reads a csv file and stores the complete file on the global variable fileData
@@ -135,10 +170,43 @@ function readTextFile(file) {
 }
 
 
+/** File that stores all battle info in the global variable data from a text
+ * text: string variable containing battle information
+*/
+function getBattles(text) {
+
+	var lines = text.split('\n');
+
+	for (var i = 1; i < (lines.length - 1); i++) {
+		var elements = lines[i].split(';')
+		var aux = {
+			name:               elements[0],
+			year:               elements[1],
+			attacker_1:         elements[5],
+			defender_1:         elements[9],
+			battle_type:        elements[14],
+			attacker_size:      elements[17],
+			defender_size:      elements[18],
+			lat:                elements[23],
+			lng:                elements[24],
+			region:             elements[25],
+			note:               elements[26]
+		};
+		data.push(aux);
+	}
+}
+
+
+
+
+/* ------------------------------ TOGGLE PANELS FUNCTIONS ------------------------------ */
+
 /** Clears the map from circles and popups */
 function clearMap() {
-    for(i in map._layers) {
-        if(map._layers[i]._path != undefined || map._layers[i]._icon != undefined) {
+
+    for (i in map._layers) {
+
+        if (map._layers[i]._path != undefined || map._layers[i]._icon != undefined) {
             try {
                 map.removeLayer(map._layers[i]);
             }
@@ -151,7 +219,7 @@ function clearMap() {
 
 
 /** Filters data by user selections and paints the result on the map */
-function lul() {
+function filterData() {
 	var year = document.getElementById("slider").value;
 	var regions = Array.from(document.getElementsByClassName("region-selector"));
     var battles = Array.from(document.getElementsByClassName("battle-selector"));
@@ -180,45 +248,7 @@ function lul() {
 }
 
 
-/** File that stores all battle info in the global variable data from a text
- * text: string variable containing battle information
-*/
-function getBattles(text) {
-	var lines = text.split('\n');
-	for (var i = 1; i < (lines.length - 1); i++) {
-		var elements = lines[i].split(';')
-		var aux = {
-			name:               elements[0],
-			year:               elements[1],
-			battle_number:      elements[2],
-			attacker_king:      elements[3],
-			defender_king:      elements[4],
-			attacker_1:         elements[5],
-			attacker_2:         elements[6],
-			attacker_3:         elements[7],
-			attacker_4:         elements[8],
-			defender_1:         elements[9],
-			defender_2:         elements[10],
-			defender_3:         elements[11],
-			defender_4:         elements[12],
-			attacker_outcome:   elements[13],
-			battle_type:        elements[14],
-			major_death:        elements[15],
-			major_capture:      elements[16],
-			attacker_size:      elements[17],
-			defender_size:      elements[18],
-			attacker_commander: elements[19],
-			defender_commander: elements[20],
-			summer:             elements[21],
-			location:           elements[22],
-			lat:                elements[23],
-			lng:                elements[24],
-			region:             elements[25],
-			note:               elements[26]
-		};
-		data.push(aux);
-	}
-}
+
 
 
 /** Function that paints all the battle data in the map */
@@ -231,12 +261,12 @@ function paintBattles(elemnts) {
 
 		// Color assignation by house
 		var color = null;
-		if (elemnts[i].attacker_1 in colors) {
-			color = colors[elemnts[i].attacker_1];
+		if (elemnts[i].attacker_1 in houses) {
+			color = houses[elemnts[i].attacker_1];
 		} else {
 			var aux = elemnts[i].attacker_1.split(' ');
-			if (aux[0] in colors) {
-				color = colors[aux[0]];
+			if (aux[0] in houses) {
+				color = houses[aux[0]];
 			}
 		}
 		if (elemnts[i].lat === "" || elemnts[i].lon === "") {
@@ -252,15 +282,15 @@ function paintBattles(elemnts) {
 							title: elemnts[i].name
 						}
 					).addTo(map).on("click", function(e) {
-						showInfo(e);
+						loadBattleInfo(e);
 			});
 
-			if (elemnts[i].defender_1 in colors) {
-				color = colors[elemnts[i].defender_1];
+			if (elemnts[i].defender_1 in houses) {
+				color = houses[elemnts[i].defender_1];
 			} else {
 				var aux2 = elemnts[i].defender_1.split(' ');
-				if (aux2[0] in colors) {
-					color = colors[aux2[0]];
+				if (aux2[0] in houses) {
+					color = houses[aux2[0]];
 				}
 			}
 
@@ -273,28 +303,28 @@ function paintBattles(elemnts) {
 					 fillOpacity: 0.1,
                      title: elemnts[i].name
 					 }).addTo(map).on("click", function(e) {
-					 	showInfo(e);
+					 	loadBattleInfo(e);
 
 			});
 
             if (elemnts[i].battle_type === "pitched battle") {
                 L.marker([elemnts[i].lat, elemnts[i].lng], {icon: pitched, title: elemnts[i].name}).addTo(map).on("click", function(e) {
-					 	showInfo(e);
+					 	loadBattleInfo(e);
 
 			     });
             } else if(elemnts[i].battle_type === "ambush") {
                 L.marker([elemnts[i].lat, elemnts[i].lng], {icon: ambush, title: elemnts[i].name}).addTo(map).on("click", function(e) {
-					 	showInfo(e);
+					 	loadBattleInfo(e);
 
 			     });
             } else if(elemnts[i].battle_type === "siege") {
                 L.marker([elemnts[i].lat, elemnts[i].lng], {icon: siege, title: elemnts[i].name}).addTo(map).on("click", function(e) {
-					 	showInfo(e);
+					 	loadBattleInfo(e);
 
 			});
             } else {
                 L.marker([elemnts[i].lat, elemnts[i].lng], {icon: razing, title: elemnts[i].name}).addTo(map).on("click", function(e) {
-					 	showInfo(e);
+					 	loadBattleInfo(e);
 
 			     });
             }
@@ -303,8 +333,11 @@ function paintBattles(elemnts) {
 }
 
 
+/* -------------------------------- MAP CREATION -------------------------------- */
+
 /** Initializes the map data and calls the functions to paint the data in the map */
 function create() {
+
 	map = L.map('map').setView([5,20], 4);
 	mapLink =
 			'<a href="http://openstreetmap.org">OpenStreetMap</a>';
@@ -324,7 +357,7 @@ function create() {
 			document.getElementById("info-container").classList.remove('info-active');
 		}
 		else {
-			showLegend();
+			loadLegend();
 		}
 	});
 
@@ -343,10 +376,10 @@ function create() {
 	// Show battles data on the map
 	lul();
 
-	showLegend();
+	loadLegend();
 
 	// Add event listener to the info panel
-	document.getElementById("info-title").addEventListener('click', show, false);
+	document.getElementById("info-title").addEventListener('click', showInfoPanel, false);
 }
 
 
