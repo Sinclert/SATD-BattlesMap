@@ -382,7 +382,7 @@ function create() {
 	getBattles(fileData);
 
 	// Show battles data on the map
-	fileData();
+	filterData();
 	loadLegend();
 
 	// Add event listener to the info panel
