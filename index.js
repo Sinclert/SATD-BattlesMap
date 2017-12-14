@@ -120,28 +120,29 @@ function loadBattleInfo(e) {
 /** On click action that shows battle information on the information panel */
 function loadLegend() {
     document.getElementById("header-t").innerHTML = "Captions";
-    document.getElementById("info-content").innerHTML =  "<img src = './icons/ambush.png' width=40 height=40>" + "is ambush" + "<br>"
-    													+ "<img src = './icons/pitched.png' width=40 height=40>" + "is pitched battle" + "<br>"
-    													+ "<img src = './icons/siege.png' width=40 height=40>" + "is siege" + "<br>"
-    													+ "<img src = './icons/razing.png' width=40 height=40>" + "is razing" + "<br>"
-    													+ "<br>"
-    													+ "<div class='box Lannister'></div>" + "is Lannister" + "<br><br>"
-    													+ "<div class='box Stark'></div>" + "<p style='float:left; margin:0; padding-left:0'> is Stark</p>" + "<br><br>"
-    													+ "<div class='box Greyjoy'></div>" + "<p style='float:left; margin:0; padding:0'> is Greyjoy</p>" + "<br><br>"
-    													+ "<div class='box Bolton'></div>" + "<p style='float:left; margin:0; padding:0'> is Bolton</p>" + "<br><br>"
-    													+ "<div class='box Baratheon'></div>" + "<p style='float:left; margin:0; padding:0'> is Baratheon</p>" + "<br><br>"
-    													+ "<div class='box Darry'></div>" + "<p style='float:left; margin:0; padding:0'> is Darry</p>" + "<br><br>"
-    													+ "<div class='box Brotherhood'></div>" + "<p style='float:left; margin:0; padding:0'> is Brotherhood without Banners</p>" + "<br><br>"
-    													+ "<div class='box Frey'></div>" + "<p style='float:left; margin:0; padding:0'> is Frey</p>" + "<br><br>"
-    													+ "<div class='box Free'></div>" + "<p style='float:left; margin:0; padding:0'> is Free Folk</p>" + "<br><br>"
-    													+ "<div class='box Brave'></div>" + "<p style='float:left; margin:0; padding:0'> is Brave Companions</p>" + "<br><br>"
-    													+ "<div class='box Bracken'></div>" + "<p style='float:left; margin:0; padding:0'> is Bracken</p>" + "<br><br>"
-    													+ "<div class='box Karstark'></div>" + "<p style='float:left; margin:0; padding:0'> is Karstark</p>" + "<br><br>"
-    													+ "<div class='box Tully'></div>" + "<p style='float:left; margin:0; padding:0'> is Tully</p>" + "<br><br>"
-    													+ "<div class='box Mallister'></div>" + "<p style='float:left; margin:0; padding:0'> is Mallister</p>" + "<br><br>"
-    													+ "<div class='box Night'></div>" + "<p style='float:left; margin:0; padding:0'> is Night's Watch</p>" + "<br><br>"
-    													+ "<div class='box Tyrell'></div>" + "<p style='float:left; margin:0; padding:0'> is Tyrell</p>" + "<br><br>"
-    													+ "<div class='box Blackwood'></div>" + "<p style='float:left; margin:0; padding:0'> is Blackwood</p>";
+    document.getElementById("info-content").innerHTML = 
+    	"<img src = './icons/ambush.png' width=40 height=40>" + "is ambush" + "<br>"
+    	+ "<img src = './icons/pitched.png' width=40 height=40>" + "is pitched battle" + "<br>"
+    	+ "<img src = './icons/siege.png' width=40 height=40>" + "is siege" + "<br>"
+    	+ "<img src = './icons/razing.png' width=40 height=40>" + "is razing" + "<br>"
+    	+ "<br>"
+    	+ "<div class='box Lannister'></div>" + "is Lannister" + "<br><br>"
+    	+ "<div class='box Stark'></div>" + "<p style='float:left; margin:0; padding-left:0'> is Stark</p>" + "<br><br>"
+    	+ "<div class='box Greyjoy'></div>" + "<p style='float:left; margin:0; padding:0'> is Greyjoy</p>" + "<br><br>"
+    	+ "<div class='box Bolton'></div>" + "<p style='float:left; margin:0; padding:0'> is Bolton</p>" + "<br><br>"
+    	+ "<div class='box Baratheon'></div>" + "<p style='float:left; margin:0; padding:0'> is Baratheon</p>" + "<br><br>"
+    	+ "<div class='box Darry'></div>" + "<p style='float:left; margin:0; padding:0'> is Darry</p>" + "<br><br>"
+    	+ "<div class='box Brotherhood'></div>" + "<p style='float:left; margin:0; padding:0'> is Brotherhood without Banners</p>" + "<br><br>"
+    	+ "<div class='box Frey'></div>" + "<p style='float:left; margin:0; padding:0'> is Frey</p>" + "<br><br>"
+    	+ "<div class='box Free'></div>" + "<p style='float:left; margin:0; padding:0'> is Free Folk</p>" + "<br><br>"
+    	+ "<div class='box Brave'></div>" + "<p style='float:left; margin:0; padding:0'> is Brave Companions</p>" + "<br><br>"
+    	+ "<div class='box Bracken'></div>" + "<p style='float:left; margin:0; padding:0'> is Bracken</p>" + "<br><br>"
+    	+ "<div class='box Karstark'></div>" + "<p style='float:left; margin:0; padding:0'> is Karstark</p>" + "<br><br>"
+    	+ "<div class='box Tully'></div>" + "<p style='float:left; margin:0; padding:0'> is Tully</p>" + "<br><br>"
+    	+ "<div class='box Mallister'></div>" + "<p style='float:left; margin:0; padding:0'> is Mallister</p>" + "<br><br>"
+    	+ "<div class='box Night'></div>" + "<p style='float:left; margin:0; padding:0'> is Night's Watch</p>" + "<br><br>"
+    	+ "<div class='box Tyrell'></div>" + "<p style='float:left; margin:0; padding:0'> is Tyrell</p>" + "<br><br>"
+    	+ "<div class='box Blackwood'></div>" + "<p style='float:left; margin:0; padding:0'> is Blackwood</p>";
 }
 
 
@@ -253,6 +254,39 @@ function filterData() {
 /* -------------------------------- PAINT ELEMENTS -------------------------------- */
 
 
+function paintCircle(element, who, size) {
+
+	// Radius for circle asignation, multiplied by 10 so that it can be seen
+	var radius = element[size] * 10;
+
+	// Color assignation by house
+	var color = null;
+	if (element[who] in houses) {
+		color = houses[element[who]];
+	}
+	else {
+		var aux = element[who].split(' ');
+		if (aux[0] in houses) {
+			color = houses[aux[0]];
+		}
+	}
+
+	// Paint the circle
+	L.circle(
+		[element.lat, element.lng],
+		radius,
+		{
+			fillColor: color,
+			color: color,
+			fillOpacity: 0.1,
+			title: element.name
+		}
+		).addTo(map).on("click", function(e) {
+			loadBattleInfo(e);
+	});
+}
+
+
 /** Function that paints all the battle data in the map */
 function paintBattles(elemnts) {
 
@@ -262,59 +296,8 @@ function paintBattles(elemnts) {
 			continue;
 		}
 
-		// Radius for circle asignation, multiplied by 10 so that it can be seen
-		var radius = elemnts[i].attacker_size * 10;
-
-		// Color assignation by house
-		var color = null;
-		if (elemnts[i].attacker_1 in houses) {
-			color = houses[elemnts[i].attacker_1];
-		}
-		else {
-			var aux = elemnts[i].attacker_1.split(' ');
-			if (aux[0] in houses) {
-				color = houses[aux[0]];
-			}
-		}
-
-		// Attacker circle
-		L.circle(
-			[elemnts[i].lat, elemnts[i].lng],
-			radius,
-			{
-				fillColor: color,
-				color: color,
-				fillOpacity: 0.1,
-				title: elemnts[i].name
-			}
-			).addTo(map).on("click", function(e) {
-				loadBattleInfo(e);
-		});
-
-
-
-		if (elemnts[i].defender_1 in houses) {
-			color = houses[elemnts[i].defender_1];
-		}
-		else {
-			var aux2 = elemnts[i].defender_1.split(' ');
-			if (aux2[0] in houses) {
-				color = houses[aux2[0]];
-			}
-		}
-
-		radius = elemnts[i].defender_size * 10;
-
-		//Defender circle
-		L.circle([elemnts[i].lat, elemnts[i].lng], radius, {
-				 fillColor: color,
-				 color: color,
-				 fillOpacity: 0.1,
-                 title: elemnts[i].name
-				 }).addTo(map).on("click", function(e) {
-				 	loadBattleInfo(e);
-
-		});
+		paintCircle(elemnts[i], "attacker_1", "attacker_size");
+		paintCircle(elemnts[i], "defender_1", "defender_size");
 
         if (elemnts[i].battle_type === "pitched battle") {
             L.marker([elemnts[i].lat, elemnts[i].lng], {icon: pitched, title: elemnts[i].name}).addTo(map).on("click", function(e) {
@@ -341,7 +324,9 @@ function paintBattles(elemnts) {
 }
 
 
+
 /* -------------------------------- MAP CREATION -------------------------------- */
+
 
 /** Initializes the map data and calls the functions to paint the data in the map */
 function create() {
