@@ -4,7 +4,7 @@ Using a web page, this project shows in a map the battles that take place in the
 
 ## How does it work?
 
-To be able to execute the system, you need a web browser (Google Chrome, Mozilla Firefox or Safari work perfectly) to view the map. Once you open it, you find the map shown in the following image:
+To be able to execute the system, you need a web browser (Google Chrome or Mozilla Firefox) to view the map. Once you open it, you find the map shown in the following image:
 
 ![map](images/map.png)
 
