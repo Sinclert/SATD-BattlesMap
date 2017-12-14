@@ -10,7 +10,7 @@ To be able to execute the system, you need a web browser (Google Chrome, Mozilla
 
 The rightmost panel shows the different options to filter the battles that take place in Westeros between the years 298 and 300. They can be shown by region and battle type. Once you have selected the year and the regions and battle types that you want to be shown, they are painted on the map, as you can see in the image below. The different battle types are represented using different icons, and the battle size by the painted circles in the map. For each battle, there are two circles: one for the attacker army and one for the defender army. The sizes of the circles depend on the size of the armies. To distinguish among the armies, each of the houses involved in the battles are painted in a different color, usually a color that has relation with their emblems or quotes.
 
-![map alias](images/map alias.png)
+![map alias](images/map-alias.png)
 
 The map provides a *Captions* section located on the rightmost corner of the map, in which the color-house correspondance is stated, as well as what each of the icons for the battle types mean. This caption is shown when nothing in the map is selected or when a point without battles is clicked. 
 
@@ -18,7 +18,7 @@ The map provides a *Captions* section located on the rightmost corner of the map
 
 When a battle is selected, information regarding the selected battle is displayed on the rightmost corner of the page. Following the name of the battle, the data obtained from the A Wiki of Ice and Fire is displayed, containing different facts and how the battle took place.
 
-![battle selection](images/battle selection.png)
+![battle selection](images/battle-selection.png)
 
 Finally, as we can do on Google Maps and every other Leaflet map, it can be zoomed in and out and we can traverse the map using the mouse.
 
