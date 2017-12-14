@@ -250,11 +250,17 @@ function filterData() {
 
 
 
+/* -------------------------------- PAINT ELEMENTS -------------------------------- */
+
 
 /** Function that paints all the battle data in the map */
 function paintBattles(elemnts) {
 
 	for (var i = 0; i < elemnts.length - 1; i++) {
+
+		if (elemnts[i].lat === "" || elemnts[i].lon === "") {
+			continue;
+		}
 
 		// Radius for circle asignation, multiplied by 10 so that it can be seen
 		var radius = elemnts[i].attacker_size * 10;
@@ -263,72 +269,74 @@ function paintBattles(elemnts) {
 		var color = null;
 		if (elemnts[i].attacker_1 in houses) {
 			color = houses[elemnts[i].attacker_1];
-		} else {
+		}
+		else {
 			var aux = elemnts[i].attacker_1.split(' ');
 			if (aux[0] in houses) {
 				color = houses[aux[0]];
 			}
 		}
-		if (elemnts[i].lat === "" || elemnts[i].lon === "") {
-			continue;
-		} else {
-			// Attacker circle
-			L.circle([elemnts[i].lat, elemnts[i].lng],
-						radius,
-						{
-							fillColor: color,
-							color: color,
-							fillOpacity: 0.1,
-							title: elemnts[i].name
-						}
-					).addTo(map).on("click", function(e) {
-						loadBattleInfo(e);
-			});
 
-			if (elemnts[i].defender_1 in houses) {
-				color = houses[elemnts[i].defender_1];
-			} else {
-				var aux2 = elemnts[i].defender_1.split(' ');
-				if (aux2[0] in houses) {
-					color = houses[aux2[0]];
-				}
+		// Attacker circle
+		L.circle(
+			[elemnts[i].lat, elemnts[i].lng],
+			radius,
+			{
+				fillColor: color,
+				color: color,
+				fillOpacity: 0.1,
+				title: elemnts[i].name
 			}
+			).addTo(map).on("click", function(e) {
+				loadBattleInfo(e);
+		});
 
-			radius = elemnts[i].defender_size * 10;
 
-			//Defender circle
-			L.circle([elemnts[i].lat, elemnts[i].lng], radius, {
-					 fillColor: color,
-					 color: color,
-					 fillOpacity: 0.1,
-                     title: elemnts[i].name
-					 }).addTo(map).on("click", function(e) {
-					 	loadBattleInfo(e);
 
-			});
-
-            if (elemnts[i].battle_type === "pitched battle") {
-                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: pitched, title: elemnts[i].name}).addTo(map).on("click", function(e) {
-					 	loadBattleInfo(e);
-
-			     });
-            } else if(elemnts[i].battle_type === "ambush") {
-                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: ambush, title: elemnts[i].name}).addTo(map).on("click", function(e) {
-					 	loadBattleInfo(e);
-
-			     });
-            } else if(elemnts[i].battle_type === "siege") {
-                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: siege, title: elemnts[i].name}).addTo(map).on("click", function(e) {
-					 	loadBattleInfo(e);
-
-			});
-            } else {
-                L.marker([elemnts[i].lat, elemnts[i].lng], {icon: razing, title: elemnts[i].name}).addTo(map).on("click", function(e) {
-					 	loadBattleInfo(e);
-
-			     });
-            }
+		if (elemnts[i].defender_1 in houses) {
+			color = houses[elemnts[i].defender_1];
 		}
+		else {
+			var aux2 = elemnts[i].defender_1.split(' ');
+			if (aux2[0] in houses) {
+				color = houses[aux2[0]];
+			}
+		}
+
+		radius = elemnts[i].defender_size * 10;
+
+		//Defender circle
+		L.circle([elemnts[i].lat, elemnts[i].lng], radius, {
+				 fillColor: color,
+				 color: color,
+				 fillOpacity: 0.1,
+                 title: elemnts[i].name
+				 }).addTo(map).on("click", function(e) {
+				 	loadBattleInfo(e);
+
+		});
+
+        if (elemnts[i].battle_type === "pitched battle") {
+            L.marker([elemnts[i].lat, elemnts[i].lng], {icon: pitched, title: elemnts[i].name}).addTo(map).on("click", function(e) {
+				 	loadBattleInfo(e);
+
+		     });
+        } else if(elemnts[i].battle_type === "ambush") {
+            L.marker([elemnts[i].lat, elemnts[i].lng], {icon: ambush, title: elemnts[i].name}).addTo(map).on("click", function(e) {
+				 	loadBattleInfo(e);
+
+		     });
+        } else if(elemnts[i].battle_type === "siege") {
+            L.marker([elemnts[i].lat, elemnts[i].lng], {icon: siege, title: elemnts[i].name}).addTo(map).on("click", function(e) {
+				 	loadBattleInfo(e);
+
+		});
+        } else {
+            L.marker([elemnts[i].lat, elemnts[i].lng], {icon: razing, title: elemnts[i].name}).addTo(map).on("click", function(e) {
+				 	loadBattleInfo(e);
+
+		     });
+        }
 	}
 }
 
@@ -374,8 +382,7 @@ function create() {
 	getBattles(fileData);
 
 	// Show battles data on the map
-	lul();
-
+	fileData();
 	loadLegend();
 
 	// Add event listener to the info panel
